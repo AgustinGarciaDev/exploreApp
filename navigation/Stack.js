@@ -6,8 +6,9 @@ import Accesories from '../Screen/Accesories'
 import AllProducts from '../Screen/AllProducts'
 import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
-/* import { Button } from 'react-native' */
 import { Icon } from 'react-native-elements'
+import FormSignUp from '../Components/Forms/FormSignUp'
+import FormSignIn from '../Components/Forms/FormSignIn'
 const stack = createStackNavigator()
 
 export const HomeStack = ({ navigation }) => {
@@ -119,6 +120,21 @@ export const SignInStack = ({ navigation }) => {
                     ),
                     title: ''
                 }} />
+            <stack.Screen name="FormSignIn" component={FormSignIn}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: ''
+                }}
+            />
         </stack.Navigator>
     )
 }
@@ -128,6 +144,21 @@ export const SignUpStack = ({ navigation }) => {
     return (
         <stack.Navigator>
             <stack.Screen name="SignUp" component={SignUp}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: ''
+                }}
+            />
+            <stack.Screen name="FormSignUp" component={FormSignUp}
                 options={{
                     headerRight: () => (
                         <Icon

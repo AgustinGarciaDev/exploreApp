@@ -1,9 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import HeroHome from '../Components/Home/HeroHome'
+import ContentHome from '../Components/Home/ContentHome'
 const Home = () => {
 
     return (
-        <Text>Hola soy la home </Text>
+        <ScrollView>
+            <HeroHome />
+            <ContentHome />
+        </ScrollView>
     )
 }
 
