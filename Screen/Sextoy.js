@@ -1,11 +1,15 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { View, Text } from "react-native"
 
-const Sextoy = () => {
+const Sextoy = ()=>{
 
-    return (
-        <Text>Aca van los juguetes sexuales</Text>
-    )
+
+return<View>
+    <Text>Sextoy</Text>
+</View>  
 }
+
+
+
 
 export default Sextoy
