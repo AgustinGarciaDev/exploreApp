@@ -1,15 +1,15 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const ContentHome = () => {
     return (
         <>
-            <View>
+            {/*   <View>
                 <Text style={styles.titleContent}>Explore our categories</Text>
-            </View>
+            </View> */}
             <ImageBackground style={styles.image} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-8.png' }}>
                 <Text style={styles.titleCard}>SexToy</Text>
                 <View>
@@ -35,7 +35,7 @@ const ContentHome = () => {
             </ImageBackground>
             < ImageBackground style={styles.image} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-9.png' }}>
                 <Text style={styles.titleCard}>Accesories</Text>
-                <View>
+                <View style={styles.containerButtons}>
                     <Button
                         title="Sexgame"
                         type="outline"
@@ -56,7 +56,14 @@ const ContentHome = () => {
                     />
                 </View>
             </ImageBackground>
-            <View >
+            <View>
+                <LinearGradient
+                    // Background Linear Gradient
+                    colors={['#e83e8c', '#6f42c1']}
+                    style={styles.background}
+                    locations={[0.2, 1]}
+                    start={{ x: 0.1, y: 0.2 }}
+                />
                 <View style={styles.containerBlockIcon}>
                     <View style={styles.blockIconAndText}>
                         <Icon
@@ -64,8 +71,8 @@ const ContentHome = () => {
                             size={50}
                             type='font-awesome-5' name="truck"
                         />
-                        <Text>Free Delivery</Text>
-                        <Text>On Orders Over £50</Text>
+                        <Text style={styles.titleBlockIcon}>Free Delivery</Text>
+                        <Text style={styles.textBlockIcon}>On Orders Over £50</Text>
                     </View>
                     <View style={styles.blockIconAndText}>
                         <Icon
@@ -77,8 +84,8 @@ const ContentHome = () => {
                             ]}
                             type='font-awesome-5' name="box-open"
                         />
-                        <Text>14 Day Returns</Text>
-                        <Text>T&C's Apply</Text>
+                        <Text style={styles.titleBlockIcon}>14 Day Returns</Text>
+                        <Text style={styles.textBlockIcon}>T&C's Apply</Text>
                     </View>
                 </View>
                 <View style={styles.containerBlockIcon}>
@@ -92,8 +99,8 @@ const ContentHome = () => {
                             ]}
                             type='font-awesome-5' name="hand-holding-heart"
                         />
-                        <Text>Hand Picked</Text>
-                        <Text>By Our Team</Text>
+                        <Text style={styles.titleBlockIcon}>Hand Picked</Text>
+                        <Text style={styles.textBlockIcon}>By Our Team</Text>
                     </View>
                     <View style={styles.blockIconAndText}>
                         <Icon
@@ -105,8 +112,8 @@ const ContentHome = () => {
                             ]}
                             type='font-awesome-5' name="box"
                         />
-                        <Text>Discreet</Text>
-                        <Text>Non-Identifiable Packaging</Text>
+                        <Text style={styles.titleBlockIcon}>Discreet</Text>
+                        <Text style={styles.textBlockIcon} >Non-Identifiable Packaging</Text>
                     </View>
                 </View>
 
@@ -116,25 +123,27 @@ const ContentHome = () => {
 }
 const styles = StyleSheet.create({
     image: {
-        height: 280,
+        height: 400,
         width: "100%",
         resizeMode: "cover",
         justifyContent: "center",
         alignItems: 'center',
+
+    },
+    containerButtons: {
+        padding: 20
     },
     buttonCategory: {
         marginBottom: 10,
         marginTop: 10,
         borderColor: 'white',
-        borderWidth: 3
+        borderWidth: 3,
+        width: 250
     },
     titleCard: {
         textAlign: 'center',
         fontSize: 30,
         fontFamily: 'Montserrat_700Bold',
-        marginTop: 10,
-        marginBottom: 10,
-        padding: 10,
         color: 'white'
     },
     titleContent: {
@@ -159,6 +168,26 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 50,
         marginRight: 50
+    },
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: 1000,
+    },
+    titleBlockIcon: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontFamily: 'Montserrat_700Bold',
+        color: 'white'
+    },
+    textBlockIcon: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontFamily: 'Montserrat_700Bold',
+        color: 'white',
+        padding: 10
     }
 })
 

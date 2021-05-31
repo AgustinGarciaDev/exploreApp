@@ -9,16 +9,32 @@ import SignUp from '../Screen/SignUp'
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
+import { Image, View } from 'react-native'
+
 const stack = createStackNavigator()
 
 export const HomeStack = ({ navigation }) => {
+
+
+
+
     return (
         <stack.Navigator>
             <stack.Screen name="Home" component={Home}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
@@ -26,8 +42,21 @@ export const HomeStack = ({ navigation }) => {
 
                         />
                     ),
-                    title: ''
+
+                    headerTitle: (
+
+
+                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
+                            <Image
+                                source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }}
+                                style={{ width: 100, height: 38 }}
+                            />
+                        </View>
+
+                    ),
+
                 }}
+
             />
         </stack.Navigator>
     )
