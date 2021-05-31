@@ -33,7 +33,7 @@ return <ScrollView >
         <Text>AllProducts</Text>
         { products.length 
             ? products.map( product =>{
-            return <View>
+            return <View key={ product._id }>
                         <Text>{ product.name }</Text>
                         <Image key={ product._id } style={ styles.coverImg } source={{ uri:product.coverImage }} />
                         <View style={ styles.infoContainer }>
