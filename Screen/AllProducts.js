@@ -23,16 +23,16 @@ const products = [
 
 const AllProducts =({ fetchAllProducts, allProducts })=>{
     
-    /* useEffect(()=>{
+    useEffect(()=>{
         fetchAllProducts()
-    },[]) */
+    },[])
 
 
 return <ScrollView >
     <View style={ styles.cardContainer }>
         <Text>AllProducts</Text>
-        { products.length 
-            ? products.map( product =>{
+        { allProducts.length 
+            ? allProducts.map( product =>{
             return <View key={ product._id }>
                         <Text>{ product.name }</Text>
                         <Image key={ product._id } style={ styles.coverImg } source={{ uri:product.coverImage }} />
