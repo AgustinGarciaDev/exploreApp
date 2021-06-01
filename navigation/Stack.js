@@ -12,6 +12,8 @@ import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
 import { Image, View } from 'react-native'
+import CardProduct from '../Components/products/CardProduct'
+import Product from '../Screen/Product'
 
 const stack = createStackNavigator()
 
@@ -128,6 +130,36 @@ export const AllproductsStack = ({ navigation }) => {
                 }}
 
             />
+            <stack.Screen name="CardProduct" component={CardProduct}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+                        />
+                    ),
+                    title: ''
+                }}
+
+            />
+            <stack.Screen name="Product" component={Product}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+                        />
+                    ),
+                    title: ''
+                }}
+
+            />
         </stack.Navigator>
     )
 }
@@ -211,7 +243,7 @@ export const SignUpStack = ({ navigation }) => {
 export const CheckoutStack = ({ navigation }) => {
     return (
         <stack.Navigator>
-            <stack.Screen name="Checkout" component={ Checkout }
+            <stack.Screen name="Checkout" component={Checkout}
                 options={{
                     headerRight: () => (
                         <Icon

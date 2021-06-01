@@ -27,7 +27,14 @@ const FormSignUp = () => {
             quality: 1,
         });
         if (!result.cancelled) {
-            setImage(result.uri);
+            let path = result.uri;
+            if (Platform.OS !== "web") {
+                path = "~" + path.substring(path.indexOf("/Documents"));
+            }
+            if (!result.fileName) {
+                result.fileName = path.split("/").pop();
+                setImage(result.fileName)
+            }
         }
     };
 
