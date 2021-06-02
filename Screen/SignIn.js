@@ -1,11 +1,38 @@
 import React from 'react';
+import { connect } from "react-redux"
+import userActions from "../redux/Action/userActions"
+import Toast from 'react-native-toast-message';
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import * as Google from "expo-google-app-auth"
 
 const SignIn = (props) => {
 
 
+    const SignUpWhitGoogle = async ()=>{
 
+        const { type , user } = await Google.logInAsync({
+             androidClientId:`96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
+         })
+         if( type === "success" ){
+            props.signInUser({ email:user.email, password: 'Hola1234!' })
+            .then( data=> data 
+                ? props.navigation.navigate("Home") 
+                :Toast.show({
+                    text1: 'Error try to login again',
+                    type: 'error',
+                    position: 'bottom',
+                }))
+         }
+         else{
+            Toast.show({
+                text1: message,
+                type: 'error',
+                position: 'bottom',
+            })
+         }
+     }
+ 
 
     return (
         <ImageBackground style={styles.containerForm} source={{ uri: "http://tingarciadg.com/wp-content/uploads/2021/05/pexels-sameera-ganegoda-2234783-scaled.jpg" }}>
@@ -51,6 +78,7 @@ const SignIn = (props) => {
                             size={25}
                         />
                     }
+                    onPress={ ()=> SignUpWhitGoogle() }
                     buttonStyle={styles.buttonGoogle}
                     titleStyle={{ color: 'black' }}
                 />
@@ -100,4 +128,10 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 })
-export default SignIn
+
+const mapDispatchToProps = {
+    signInUser:userActions.signInUser
+}
+
+
+export default connect(null, mapDispatchToProps) (SignIn)

@@ -2,7 +2,10 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import * as Facebook from 'expo-facebook';
+import * as Google from "expo-google-app-auth"
 import Toast from 'react-native-toast-message';
+import { connect } from 'react-redux';
+import userActions from '../redux/Action/userActions';
 
 const SignUp = (props) => {
 
@@ -60,8 +63,35 @@ const SignUp = (props) => {
     }
 
 
+    const SignUpWhitGoogle = async ()=>{
 
-
+       const { type , user } = await Google.logInAsync({
+            androidClientId:`96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
+        })
+        if( type === "success" ){
+            props.createAcount({    
+                user: user.name,
+                email:user.email,
+                password: 'Hola1234!',
+                urlImg: user.photoUrl,
+                googleFlag:true
+            })
+            .then(data => data 
+            ? props.navigation.navigate("Home")
+            : Toast.show({
+                text1: 'Error try to login again',
+                type: 'error',
+                position: 'bottom',
+            }) )
+        }
+        else{
+            Toast.show({
+                text1: message,
+                type: 'error',
+                position: 'bottom',
+            })
+        }
+    }
 
     return (
         <ImageBackground style={styles.containerForm} source={{ uri: "http://tingarciadg.com/wp-content/uploads/2021/05/pexels-sameera-ganegoda-2234783-scaled.jpg" }}>
@@ -108,6 +138,7 @@ const SignUp = (props) => {
                             size={25}
                         />
                     }
+                    onPress={ ()=>SignUpWhitGoogle() }
                     buttonStyle={styles.buttonGoogle}
                     titleStyle={{ color: 'black' }}
                 />
@@ -116,7 +147,7 @@ const SignUp = (props) => {
                     type="outline"
                     buttonStyle={styles.buttonSignIn}
                     titleStyle={{ color: 'black', fontFamily: 'Montserrat_700Bold' }}
-                    onPress={() => { props.navigation.navigate('SignIn') }}
+                    onPress={() => { props.navigation.navigate('Sign In') }}
                 />
             </View>
         </ImageBackground>
@@ -157,4 +188,9 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 })
-export default SignUp
+
+const mapDispatchToProps ={
+    createAcount:userActions.createAcount
+}
+
+export default connect(null, mapDispatchToProps) (SignUp)

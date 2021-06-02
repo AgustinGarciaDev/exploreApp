@@ -2,14 +2,17 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemL
 import React, { useEffect } from 'react'
 import { HomeStack, SexToyStack, SignInStack, SignUpStack, AccesoriesStack, AllproductsStack } from './Stack'
 import { CheckoutStack } from "./Stack"
-/* import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import userActions from '../redux/Action/userActions'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StyleSheet, Text, View, Image } from 'react-native'; */
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+
 const drawer = createDrawerNavigator()
+
 const Drawer = (props) => {
 
-    /*  const { signOutUser, usuarioStatus } = props
+    const { usuarioStatus, SignOut } = props
+
+     /* const { signOutUser, usuarioStatus } = props
      useEffect(() => {
          loginLocalStoreUser()
      }, [])
@@ -30,33 +33,34 @@ const Drawer = (props) => {
              }
  
          }
-     }
- 
+     } */
+
      const CustomDrawerContent = (props) => {
          return (
              <DrawerContentScrollView {...props}>
                  {
                      usuarioStatus
                          ? <View style={styles.containerUserFoto}>
-                             <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{ uri: usuarioStatus.foto }} />
-                             <Text style={styles.nameUser}>{usuarioStatus.name}</Text>
+                             <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{ uri: usuarioStatus.img }} />
+                             <Text style={styles.nameUser}>{usuarioStatus.user}</Text>
+                             
                          </View>
                          : <View style={styles.containerUserFoto}>
-                             <Image style={{ width: "100%", height: 80, borderRadius: 100 }} source={{ uri: 'http://baravdg.com/wp-content/uploads/2021/05/Diseno-sin-titulo.png' }} />
+                             <Image style={{ width: "60%", height: 80, borderRadius: 100 }} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }} />
                          </View>
                  }
                  <DrawerItemList {...props} />
                  { usuarioStatus &&
-                     <DrawerItem label="Sign Out" onPress={() => { signOutUser() }} />
+                     <DrawerItem label="Sign Out" onPress={() => SignOut() } />
                  }
              </DrawerContentScrollView>
          );
      }
-  */
+ 
 
     return (
 
-        <drawer.Navigator /* drawerContent={props => <CustomDrawerContent {...props} />} */>
+        <drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
             <drawer.Screen name="Home" component={HomeStack} />
             <drawer.Screen name="SexToy" component={SexToyStack} />
             <drawer.Screen name="Accesories" component={AccesoriesStack} />
@@ -68,7 +72,7 @@ const Drawer = (props) => {
 
     )
 }
-/* const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
     usurPic: {
         height: 40,
@@ -85,9 +89,20 @@ const Drawer = (props) => {
     }
 
 
-}); */
+});
 
-export default Drawer
+const mapStateToProps = state =>{
+    return{
+        usuarioStatus: state.user.usuarioStatus
+    }
+}
+
+const mapDispatchToProps = {
+    SignOut: userActions.SignOut
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps) (Drawer)
 
 /* const mapStateToProps = (state) => {
 
