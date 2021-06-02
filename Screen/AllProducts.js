@@ -44,7 +44,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
 const styles = StyleSheet.create({
     cardContainer: {
-        alignItems: "center"
+        alignItems: "center",
     },
 
 })
