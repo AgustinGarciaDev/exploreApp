@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux"
+import userActions from "../../redux/Action/userActions"
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Input, Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 
-const FormSignUp = () => {
 
-
+const FormSignUp = ({ createAcount }) => {
+    const [ form, setForm ] = useState({ user:"", email:"", password:"", urlImg:""  })
     const [image, setImage] = useState(null);
+
+    const sendForm = ()=>{
+        const formData = new FormData()
+            formData.append('user', JSON.stringify( form )   )
+            formData.append('photo', image  )
+        createAcount( formData )
+       /*  .then( res =>  console.log("componet", res ) ) */
+     
+    }
 
     useEffect(() => {
         (async () => {
@@ -17,7 +28,7 @@ const FormSignUp = () => {
                 }
             }
         })();
-    }, []);
+    }, []); 
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -25,6 +36,8 @@ const FormSignUp = () => {
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
+            base64:true,
+            exif:true
         });
         if (!result.cancelled) {
             let path = result.uri;
@@ -38,11 +51,11 @@ const FormSignUp = () => {
         }
     };
 
-    console.log(image)
     return (
         <ImageBackground style={styles.containerForm} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/pexels-photo-2344306.jpeg' }}>
             <Text style={styles.titleFormSignIn}>Completa esta formulario para crear tu cuenta</Text>
             <Input
+                onChangeText={ v => setForm({ ...form, user: v }) }
                 placeholder='Nick Name'
                 leftIcon={
                     <Icon
@@ -57,6 +70,7 @@ const FormSignUp = () => {
 
             />
             <Input
+                onChangeText={ v => setForm({ ...form, email: v }) }
                 placeholder='Email'
                 leftIcon={
                     <Icon
@@ -70,6 +84,7 @@ const FormSignUp = () => {
                 placeholderTextColor='white'
             />
             <Input
+                onChangeText={ v => setForm({ ...form, urlImg:v }) }
                 placeholder='Profile user'
                 leftIcon={
                     <Icon
@@ -80,7 +95,7 @@ const FormSignUp = () => {
                         onPress={pickImage}
                     />
                 }
-                value={image}
+                value={ image && image }
                 disabled
                 style={{ color: 'white' }}
                 placeholderTextColor='white'
@@ -88,6 +103,7 @@ const FormSignUp = () => {
             />
 
             <Input
+                onChangeText={ v => setForm({ ...form, password: v }) }
                 placeholder='Password'
                 leftIcon={
                     <Icon
@@ -102,6 +118,7 @@ const FormSignUp = () => {
                 placeholderTextColor='white'
             />
             <Button
+                onPress={ sendForm }
                 icon={
                     <Icon
                         name="arrow-right"
@@ -135,6 +152,11 @@ const styles = StyleSheet.create({
         padding: 20,
         color: 'white'
     }
-
 })
-export default FormSignUp
+
+const mapDispatchToProps ={
+    createAcount:userActions.createAcount
+}
+
+
+export default connect(null, mapDispatchToProps) (FormSignUp)

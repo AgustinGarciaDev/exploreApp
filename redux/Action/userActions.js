@@ -2,32 +2,29 @@ import axios from "axios";
 const userActions = {
 
     createAcount: (infoUser) => {
-
         return async (dispatch, getState) => {
-
             try {
-                const response = await axios.post("http://localhost:4000/api/user/signup", infoUser)
-                /*      if (!response.data.success) {
-                         return response.data.errores
-                     } */
-                console.log(response)
-                /*    dispatch({ type: 'SIGNIN_USER', payload: response.data.success ? response.data.respuesta : null }) */
+                const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signup", infoUser)
+                    console.log("action", response.data )
+                    if (!response.data.success) {
+                        return response.data.errores
+                    }
+                dispatch({ type: 'SIGNIN_USER', payload:response.data.response })
+                return true
             } catch (error) {
                 console.log(error)
             }
         }
     },
     signInUser: (infoUser) => {
-
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post("http://localhost:4000/api/user/signin", infoUser)
-                /*   if (!response.data.success) {
-  
-                      return response.data.error
-                  } */
-                console.log(response)
-                dispatch({ type: 'SIGNIN_USER', payload: response.data.success ? response.data.response : null })
+                const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signin", infoUser)
+                  if (!response.data.success) {
+                    return response.data.error
+                  }
+                dispatch({ type: 'SIGNIN_USER', payload: response.data.response })
+                return true
             } catch (error) {
                 console.log(error)
             }
@@ -38,7 +35,7 @@ const userActions = {
     SignOut: () => {
         return (dispatch, getState) => {
 
-            dispatch({ type: 'DESLOGUEAR_USUARIO' })
+            dispatch({ type: 'LOGOUT' })
             /*  toast.success("👋Bye", {
                  autoClose: 1000,
                  position: "top-center",
@@ -48,7 +45,7 @@ const userActions = {
 
     relogin: (userToken) => {
         return async (dispatch, getState) => {
-            const response = await axios.get("http://localhost:4000/api/user/relogin", { headers: { 'Authorization': 'Bearer ' + userToken } })
+            const response = await axios.get("https://explore-2021.herokuapp.com/api/user/relogin", { headers: { 'Authorization': 'Bearer ' + userToken } })
 
             dispatch({
                 type: 'SIGNIN_USER', payload: {
@@ -61,7 +58,7 @@ const userActions = {
 
     uploadPhoto: (formData) => {
         return async (dispatch, getState) => {
-            await axios.post("http://localhost:4000/api/user/uploadPhoto", formData)
+            await axios.post("https://explore-2021.herokuapp.com/api/user/uploadPhoto", formData)
         }
     },
 

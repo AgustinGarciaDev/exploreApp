@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux"
+import userActions from "../../redux/Action/userActions"
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Input, Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
+import Toast from "react-native-toast-message"
 
-const FormSignUp = () => {
+const FormSignIn = ({ navigation,  signInUser }) => {
+    const [ form, setForm ] = useState({ email:"", password:"" })
+        
+    const sendForm = ()=>{
+        signInUser( form )
+        .then( data => data === true
+        ? navigation.navigate("Home")
+        : Toast.show({ text1: data , type:"error", position:"bottom" }) 
+        )
+    }
 
     return (
         <ImageBackground style={styles.containerForm} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/pexels-photo-2344306.jpeg' }}>
             <Text style={styles.titleFormSignIn}>Completa esta formulario para crear tu cuenta</Text>
             <Input
+                onChangeText={ v => setForm({ ...form, email:v }) }
                 placeholder='Email'
                 leftIcon={
                     <Icon
@@ -23,6 +36,7 @@ const FormSignUp = () => {
             />
 
             <Input
+                onChangeText={ v => setForm({ ...form, password:v }) }
                 placeholder='Password'
                 leftIcon={
                     <Icon
@@ -37,6 +51,7 @@ const FormSignUp = () => {
                 placeholderTextColor='white'
             />
             <Button
+                onPress={ sendForm }
                 icon={
                     <Icon
                         name="arrow-right"
@@ -72,4 +87,9 @@ const styles = StyleSheet.create({
     }
 
 })
-export default FormSignUp
+
+const mapDispatchToProps ={
+    signInUser:userActions.signInUser
+}
+
+export default connect(null, mapDispatchToProps) (FormSignIn)
