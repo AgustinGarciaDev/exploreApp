@@ -4,12 +4,9 @@ import productsActions from "../redux/Action/productsActions"
 import { StyleSheet, ScrollView, View, Text, Image } from "react-native"
 import CardProduct from '../Components/products/CardProduct'
 
-
 const AllProducts = (props) => {
 
-
     const { fetchAllProducts, allProducts } = props
-
 
     useEffect(() => {
         fetchAllProducts()

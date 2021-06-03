@@ -7,13 +7,13 @@ import AllProducts from '../Screen/AllProducts'
 import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
 import Checkout from "../Screen/Checkout"
-
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
 import { Image, View } from 'react-native'
 import CardProduct from '../Components/products/CardProduct'
 import Product from '../Screen/Product'
+import ShoppingCart from '../Screen/ShoppingCart'
 
 const stack = createStackNavigator()
 
@@ -41,7 +41,7 @@ export const HomeStack = ({ navigation }) => {
                             name='shopping-cart'
                             type='font-awesome-5'
                             color='#032e50'
-                            onPress={() => navigation.openDrawer()}
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
@@ -245,20 +245,89 @@ export const CheckoutStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="Checkout" component={Checkout}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
                     ),
-                    title: ''
+
+                    headerTitle: (
+
+
+                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
+                            <Image
+                                source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }}
+                                style={{ width: 100, height: 38 }}
+                            />
+                        </View>
+
+                    ),
+
                 }}
             />
         </stack.Navigator>
     )
 }
+
+
+export const ShoppingCartStack = ({ navigation }) => {
+    return (
+        <stack.Navigator>
+            <stack.Screen name="ShoppingCart" component={ShoppingCart}
+                options={{
+                    headerLeft: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+
+                    headerTitle: (
+
+
+                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
+                            <Image
+                                source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }}
+                                style={{ width: 100, height: 38 }}
+                            />
+                        </View>
+
+                    ),
+
+                }}
+
+            />
+        </stack.Navigator>
+    )
+}
+
 
