@@ -8,18 +8,17 @@ import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
 import Checkout from "../Screen/Checkout"
 import CreditCard from "../Screen/CreditCard"
+import Cart from '../Screen/Cart'
 
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
 import { Image, View } from 'react-native'
 
+
 const stack = createStackNavigator()
 
 export const HomeStack = ({ navigation }) => {
-
-
-
 
     return (
         <stack.Navigator>
@@ -40,27 +39,25 @@ export const HomeStack = ({ navigation }) => {
                             name='shopping-cart'
                             type='font-awesome-5'
                             color='#032e50'
-                            onPress={() => navigation.openDrawer()}
+                            onPress={() => navigation.navigate( "Cart" ) }
                             containerStyle={{ marginRight: 25 }}
 
                         />
                     ),
 
                     headerTitle: (
-
-
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
                             <Image
                                 source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }}
                                 style={{ width: 100, height: 38 }}
                             />
                         </View>
-
                     ),
-
                 }}
 
             />
+            <stack.Screen name="Cart" component={ Cart } /> 
+
         </stack.Navigator>
     )
 }

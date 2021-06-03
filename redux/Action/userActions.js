@@ -4,12 +4,12 @@ const userActions = {
     createAcount: (infoUser) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post("http://192.168.0.106:4000/api/user/signup", infoUser,/* {
+                const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signup", infoUser,{
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'multipart/form-data;'    
                     }
-                } */)
+                })
                     console.log("action", response.data )
                     if (!response.data.success) {
                         return response.data.errores

@@ -11,7 +11,6 @@ const AllProducts =({ fetchAllProducts, allProducts })=>{
         fetchAllProducts()
     },[])
 
-
 return <ScrollView >
 
 
