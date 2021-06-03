@@ -20,6 +20,7 @@
     "expo-app-loading": "^1.0.3",
     "expo-av": "~9.1.2",
     "expo-facebook": "~11.0.5",
+    "expo-file-system": "^11.0.2",
     "expo-font": "~9.1.0",
     "expo-google-app-auth": "^8.1.7",
     "expo-image-picker": "^10.1.4",

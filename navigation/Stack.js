@@ -7,6 +7,7 @@ import AllProducts from '../Screen/AllProducts'
 import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
 import Checkout from "../Screen/Checkout"
+import CreditCard from "../Screen/CreditCard"
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
@@ -323,6 +324,24 @@ export const ShoppingCartStack = ({ navigation }) => {
 
                     ),
 
+                    title: 'Contact Information',
+                    headerTitleAlign: "center"
+                }}
+            />
+            <stack.Screen name="CreditCard" component={CreditCard}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: 'Credit card',
+                    headerTitleAlign: "center"
                 }}
 
             />
