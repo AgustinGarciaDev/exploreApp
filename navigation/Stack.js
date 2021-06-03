@@ -7,6 +7,7 @@ import AllProducts from '../Screen/AllProducts'
 import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
 import Checkout from "../Screen/Checkout"
+import CreditCard from "../Screen/CreditCard"
 
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
@@ -213,6 +214,7 @@ export const CheckoutStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="Checkout" component={ Checkout }
                 options={{
+                    
                     headerRight: () => (
                         <Icon
                             name='bars'
@@ -223,7 +225,24 @@ export const CheckoutStack = ({ navigation }) => {
 
                         />
                     ),
-                    title: ''
+                    title: 'Contact Information',
+                    headerTitleAlign:"center"
+                }}
+            />
+            <stack.Screen name="CreditCard" component={ CreditCard }
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: 'Credit card',
+                    headerTitleAlign:"center"
                 }}
             />
         </stack.Navigator>

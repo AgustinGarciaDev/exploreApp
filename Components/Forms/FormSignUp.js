@@ -4,19 +4,37 @@ import userActions from "../../redux/Action/userActions"
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Input, Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+import { FileSystemUploadType } from 'expo-file-system';
 
 
 const FormSignUp = ({ createAcount }) => {
-    const [ form, setForm ] = useState({ user:"", email:"", password:"", urlImg:""  })
+    const [ form, setForm ] = useState({ user:"", email:"", password:"", urlImg:"hh"  })
     const [image, setImage] = useState(null);
 
+   
+
     const sendForm = ()=>{
-        const formData = new FormData()
-            formData.append('user', JSON.stringify( form )   )
-            formData.append('photo', image  )
-        createAcount( formData )
-       /*  .then( res =>  console.log("componet", res ) ) */
-     
+        /* const formData = new FormData()
+            formData.append('user', form.user )
+            formData.append('email', form.email )
+            formData.append('password', form.password ) */
+            /* formData.append('photo', image ) */
+          
+        createAcount( form )  
+        
+        
+        /* FileSystem.uploadAsync("http://192.168.0.106:4000/api/user/signup",image.uri,{
+            headers:{ 'Accept': 'application/json', 'Content-Type': 'multipart/form-data;'   },
+            uploadType: FileSystemUploadType.MULTIPART,
+            parameters: form
+        })
+        .then( res => console.log( res.body )   )
+        
+        .catch( err => console.log( err ) ) */
+
+
+
     }
 
     useEffect(() => {
@@ -40,9 +58,10 @@ const FormSignUp = ({ createAcount }) => {
             exif:true
         });
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage(result);
         }
     };
+
 
     return (
         <ImageBackground style={styles.containerForm} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/pexels-photo-2344306.jpeg' }}>
@@ -88,7 +107,7 @@ const FormSignUp = ({ createAcount }) => {
                         onPress={pickImage}
                     />
                 }
-                value={ image && image }
+               /*  value={ image && image.uri } */
                 disabled
                 style={{ color: 'white' }}
                 placeholderTextColor='white'
