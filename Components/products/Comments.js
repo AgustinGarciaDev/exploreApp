@@ -42,7 +42,7 @@ const Comments = (props) => {
     }
 
     const updateComment = async (id, comment) => {
-        console.log(id)
+
         var response = await props.updateComment(comment, props.idArticle, id)
         setRenderComment(response)
         /*         props.socket.emit('NewMessage') */

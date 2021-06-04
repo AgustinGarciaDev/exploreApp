@@ -11,13 +11,13 @@ const Comment = (props) => {
     const [changeInput, setChangeInput] = useState(false)
     const [ownerComment, setOwnerComment] = useState(false)
     const [newComment, setNewComment] = useState({
-        mensaje: comment,
+        comment: comment,
     })
 
     const commentInput = (e) => {
         setNewComment({
             ...newComment,
-            mensaje: e
+            comment: e
         })
     }
 
@@ -44,10 +44,10 @@ const Comment = (props) => {
         }
     }, [props.usuarioStatus])
 
-    const sendEditComment = () => {
+    const ola = () => {
 
-        if (newComment.mensaje.length !== 0) {
-            updateComment(_id, newComment.mensaje)
+        if (newComment.comment.length !== 0) {
+            updateComment(_id, newComment)
             setChangeInput(!changeInput)
         } else {
             Toast.show({
@@ -72,9 +72,9 @@ const Comment = (props) => {
                             leftIcon={{ type: 'font-awesome', name: 'comment' }}
                             onChangeText={commentInput}
                             containerStyle={styles.inputComment}
-                            value={newComment.mensaje}
+                            value={newComment.comment}
                         />
-                        <Icon onPress={sendEditComment} name='paper-plane' type='font-awesome-5' size={35} color='#032e50' />
+                        <Icon onPress={ola} name='paper-plane' type='font-awesome-5' size={35} color='#032e50' />
                     </View>
                     : <Text style={{ marginLeft: 10, fontSize: 20, marginTop: 10, marginBottom: 10 }}>{comment}</Text>
                 }
