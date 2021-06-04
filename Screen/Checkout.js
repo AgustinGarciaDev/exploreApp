@@ -3,12 +3,9 @@ import { StyleSheet, ScrollView, View, Text ,TextInput } from "react-native"
 import RNPickerSelect from 'react-native-picker-select';
 import { Button } from "react-native-elements"
 
-const Checkout = (props)=>{
-    const { navigation, route } = props
+const Checkout = ({ navigation })=>{
     const [ countries, setCountries ] = useState([])    
     const [ form , setForm ] =useState({ email: "", firstName: "", lastName: "", adress: "", apartment: "", city: "", country: "", postCode: "", phone: "" })
-
-    console.log( props )
 
     useEffect(()=>{
         fetch( "https://restcountries.eu/rest/v2/all" )

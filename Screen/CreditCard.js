@@ -7,6 +7,8 @@ import { Button } from "react-native-elements"
 const CreditCard = ({ route:{ params } })=>{
     const [ creditCard, setCreditCard ] = useState()
 
+    console.log( params )
+
 
 return  <>
     <ScrollView  >
