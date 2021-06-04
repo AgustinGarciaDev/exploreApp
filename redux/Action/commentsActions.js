@@ -44,7 +44,6 @@ const commentsActions = {
     updateComment: (info, idArticle, idComment) => {
         return async (dispatch, getState) => {
             var response = await axios.put(`https://explore-2021.herokuapp.com/api/products/comments/${idArticle}/${idComment}`, info)
-            console.log(response)
             if (response.data.success) {
                 return response.data.result.comments
             }

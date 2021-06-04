@@ -46,7 +46,7 @@ const ShoppingCart = (props) => {
 
                 <View style={styles.buttonsContainer}>
                     <Button buttonStyle={styles.buttons} onPress={() => props.navigation.goBack()} type="outline" title="cancel" />
-                    <Button buttonStyle={styles.buttons} onPress={() => props.navigate('Profile', { props: "props" })} title="next" />
+                    <Button buttonStyle={styles.buttons} onPress={() => props.navigation.navigate('Checkout', { cart: cart, total })} title="next" />
                 </View>
 
             </View>

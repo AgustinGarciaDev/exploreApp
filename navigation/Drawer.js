@@ -1,7 +1,7 @@
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
 import React, { useEffect } from 'react'
 import { HomeStack, SexToyStack, SignInStack, SignUpStack, AccesoriesStack, AllproductsStack } from './Stack'
-import { CheckoutStack, ShoppingCartStack } from "./Stack"
+import { ShoppingCartStack } from "./Stack"
 import { connect } from 'react-redux';
 import userActions from '../redux/Action/userActions'
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
@@ -87,7 +87,7 @@ const Drawer = (props) => {
             <drawer.Screen name="All products" component={AllproductsStack} />
             <drawer.Screen name="Sign In" component={SignInStack} />
             <drawer.Screen name="Sign Up" component={SignUpStack} />
-            <drawer.Screen name="Checkout" component={CheckoutStack} />
+           {/*  <drawer.Screen name="Checkout" component={CheckoutStack} /> */}
             <drawer.Screen name="ShoppingCart" component={ShoppingCartStack} />
         </drawer.Navigator>
 

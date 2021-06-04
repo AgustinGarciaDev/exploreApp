@@ -81,7 +81,7 @@ const Product = (props) => {
             })
         }
     }
-    console.log(article)
+    /* console.log(article) */
 
     if (loading) {
         return null
