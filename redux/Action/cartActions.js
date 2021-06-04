@@ -47,13 +47,11 @@ const cartActions = {
         }
     },
     localStorage: (response) => {
-        console.log(response)
         return (dispatch, getState) => {
             dispatch({ type: 'PRODUCTS', payload: response })
         }
     },
     localStorageNum: (response) => {
-        console.log(response)
         return (dispatch, getState) => {
             dispatch({ type: 'NUM_CART', payload: response })
         }

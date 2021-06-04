@@ -20,9 +20,6 @@ const stack = createStackNavigator()
 
 export const HomeStack = ({ navigation }) => {
 
-
-
-
     return (
         <stack.Navigator>
             <stack.Screen name="Home" component={Home}
@@ -49,15 +46,12 @@ export const HomeStack = ({ navigation }) => {
                     ),
 
                     headerTitle: (
-
-
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }} >
                             <Image
                                 source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }}
                                 style={{ width: 100, height: 38 }}
                             />
                         </View>
-
                     ),
 
                 }}
@@ -72,12 +66,22 @@ export const SexToyStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="SexToy" component={SexToy}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
@@ -95,12 +99,22 @@ export const AccesoriesStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="Accesories" component={Accesories}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
@@ -118,13 +132,23 @@ export const AllproductsStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="Allproducts" component={AllProducts}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
+
                         />
                     ),
                     title: ''
@@ -133,13 +157,23 @@ export const AllproductsStack = ({ navigation }) => {
             />
             <stack.Screen name="CardProduct" component={CardProduct}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
+
                         />
                     ),
                     title: ''
@@ -148,13 +182,23 @@ export const AllproductsStack = ({ navigation }) => {
             />
             <stack.Screen name="Product" component={Product}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
+
                         />
                     ),
                     title: ''
@@ -172,7 +216,7 @@ export const SignInStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="SignIn" component={SignIn}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
@@ -182,16 +226,36 @@ export const SignInStack = ({ navigation }) => {
 
                         />
                     ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
                     title: ''
                 }} />
             <stack.Screen name="FormSignIn" component={FormSignIn}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
@@ -209,12 +273,22 @@ export const SignUpStack = ({ navigation }) => {
         <stack.Navigator>
             <stack.Screen name="SignUp" component={SignUp}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />
@@ -224,12 +298,22 @@ export const SignUpStack = ({ navigation }) => {
             />
             <stack.Screen name="FormSignUp" component={FormSignUp}
                 options={{
-                    headerRight: () => (
+                    headerLeft: () => (
                         <Icon
                             name='bars'
                             type='font-awesome-5'
                             color='#032e50'
                             onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#032e50'
+                            onPress={() => navigation.navigate("ShoppingCart")}
                             containerStyle={{ marginRight: 25 }}
 
                         />

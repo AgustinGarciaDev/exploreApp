@@ -3,23 +3,65 @@ import { View, StyleSheet } from 'react-native'
 import Toast from 'react-native-toast-message';
 import { Input, Icon, Text } from 'react-native-elements';
 import Comment from "./Comment";
+import { connect } from "react-redux";
+import commentsActions from '../../redux/Action/commentsActions'
+
 
 const Comments = (props) => {
+    const { renderComment, setRenderComment } = props
+    const [loadingComment, setLoadingComment] = useState(true)
+    const [newComment, setNewComment] = useState({
+        mensaje: "",
+    })
+
+    const commentInput = (e) => {
+        setNewComment({
+            ...newComment,
+            mensaje: e
+        })
+    }
+
+
+    const addComment = async () => {
+
+        var response = await props.fetchComments({ comment: newComment.mensaje, token: props.usuarioStatus.token }, props.idArticle)
+        if (response) {
+            setRenderComment(response)
+            /*                 props.socket.emit('NewMessage') */
+            setNewComment({
+                ...newComment,
+                mensaje: ""
+            })
+        }
+    }
+
+    const deleteComment = async (id) => {
+        var response = await props.deleteComment(id, props.idArticle)
+        setRenderComment(response)
+        /*         props.socket.emit('NewMessage') */
+    }
+
+    const updateComment = async (id, comment) => {
+        console.log(id)
+        var response = await props.updateComment(comment, props.idArticle, id)
+        setRenderComment(response)
+        /*         props.socket.emit('NewMessage') */
+    }
 
 
     return (
         <View>
 
-            {props.comments.map(comment => <Comment key={comment._id} comment={comment} />)}
+            {renderComment.map(comment => <Comment deleteComment={deleteComment} updateComment={updateComment} key={comment._id} comment={comment} />)}
             <View style={styles.containerInputAndButton}>
                 <Input
                     placeholder="Comment"
                     leftIcon={{ type: 'font-awesome', name: 'comment' }}
-                    /*  onChangeText={commentInput} */
+                    onChangeText={commentInput}
                     containerStyle={styles.inputComment}
-                /*  value={newComment.mensaje} */
+                    value={newComment.mensaje}
                 />
-                <Icon /* onPress={loadingComment ? sendComment : null} */ name='paper-plane' type='font-awesome-5' size={35} color='#032e50' />
+                <Icon onPress={addComment} name='paper-plane' type='font-awesome-5' size={35} color='#032e50' />
             </View>
         </View>
     )
@@ -37,4 +79,17 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Comments
+const mapStateToProps = state => {
+    return {
+        articles: state.cart.articles,
+        usuarioStatus: state.user.usuarioStatus
+    }
+}
+
+const mapDispatchToProps = {
+    fetchComments: commentsActions.fetchComments,
+    deleteComment: commentsActions.deleteComment,
+    updateComment: commentsActions.updateComment
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)

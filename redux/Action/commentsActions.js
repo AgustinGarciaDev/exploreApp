@@ -25,7 +25,6 @@ const commentsActions = {
                         'Authorization': 'Bearer ' + info.token
                     }
                 })
-                console.log(response)
                 if (response.data.success) {
                     return response.data.result.comments
                 }

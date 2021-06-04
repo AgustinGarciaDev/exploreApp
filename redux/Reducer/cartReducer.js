@@ -21,10 +21,10 @@ const cartReducer = (state = initialState, action) => {
                 return article
             })
 
-            /*   async () => {
-                  await AsyncStorage.setItem('cart', JSON.stringify(buy))
-                  await AsyncStorage.setItem('num', JSON.stringify(state.accountant + 1)) 
-              } */
+
+            AsyncStorage.setItem('cart', JSON.stringify(buy))
+            AsyncStorage.setItem('num', JSON.stringify(state.accountant + 1))
+
 
             return {
                 ...state,
@@ -43,10 +43,10 @@ const cartReducer = (state = initialState, action) => {
                 return article
             })
 
-            /*   async () => {
-                  await AsyncStorage.setItem('cart', JSON.stringify(remove))
-                  await AsyncStorage.setItem('num', JSON.stringify(state.accountant - cont))
-              } */
+
+            AsyncStorage.setItem('cart', JSON.stringify(remove))
+            AsyncStorage.setItem('num', JSON.stringify(state.accountant - cont))
+
             return {
                 ...state,
                 articles: remove,
@@ -60,10 +60,10 @@ const cartReducer = (state = initialState, action) => {
                 }
                 return article
             })
-            /*   async () => {
-                  await AsyncStorage.setItem('cart', JSON.stringify(subtract))
-                  await AsyncStorage.setItem('num', JSON.stringify(state.accountant - 1))
-              } */
+
+            AsyncStorage.setItem('cart', JSON.stringify(subtract))
+            AsyncStorage.setItem('num', JSON.stringify(state.accountant - 1))
+
             return {
                 ...state,
                 accountant: state.accountant - 1

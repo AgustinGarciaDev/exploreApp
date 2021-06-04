@@ -17,8 +17,10 @@ const Product = (props) => {
     ]
     const [article, setArticle] = useState({})
     const [loading, setLoading] = useState(true)
+    const [renderComment, setRenderComment] = useState([])
     useEffect(() => {
         getArticle()
+        fetchComments()
     }, [])
     const _renderItem = ({ item, index }) => {
         return (
@@ -36,6 +38,13 @@ const Product = (props) => {
         setArticle(item)
         setLoading(false)
     }
+
+    const fetchComments = async () => {
+        let response = await props.products()
+        let item = response.find(article => article._id === props.route.params.id)
+        setRenderComment(item.comments)
+    }
+
 
 
     /* Carrito */
@@ -91,7 +100,11 @@ const Product = (props) => {
             </View>
             <View>
                 <Text style={styles.titleDescripcion}>Reviews product</Text>
-                <Comments comments={article.comments} />
+                <Comments
+                    renderComment={renderComment}
+                    idArticle={article._id}
+                    setRenderComment={setRenderComment}
+                />
             </View>
         </ScrollView>
     )

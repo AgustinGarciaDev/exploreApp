@@ -14,13 +14,13 @@ const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
 
-    /* const { signOutUser, usuarioStatus } = props
+
     useEffect(() => {
         loginLocalStoreUser()
     }, [])
- 
+
     const loginLocalStoreUser = async () => {
- 
+
         if (!props.usuarioStatus && AsyncStorage.getItem('token')) {
             const tokenAsyncStorage = await AsyncStorage.getItem('token')
             if (tokenAsyncStorage) {
@@ -30,16 +30,11 @@ const Drawer = (props) => {
                     token: tokenAsyncStorage,
                     ...infoUserConvert
                 }
-                props.forzarLoginLocalStore(userLoggedInfo)
+                props.relogin(userLoggedInfo)
                 return null
             }
- 
         }
-    } */
-
-    /* Carrito */
-
-
+    }
     useEffect(() => {
         productsLocalStorage()
     }, [])
@@ -129,6 +124,7 @@ const mapDispatchToProps = {
     SignOut: userActions.SignOut,
     localStorage: cartActions.localStorage,
     localStorageNum: cartActions.localStorageNum,
+    relogin: userActions.relogin
 }
 
 
