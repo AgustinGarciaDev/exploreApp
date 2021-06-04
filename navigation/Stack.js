@@ -8,6 +8,7 @@ import SignIn from '../Screen/SignIn'
 import SignUp from '../Screen/SignUp'
 import Checkout from "../Screen/Checkout"
 import CreditCard from "../Screen/CreditCard"
+import Cart from '../Screen/Cart'
 import { Icon } from 'react-native-elements'
 import FormSignUp from '../Components/Forms/FormSignUp'
 import FormSignIn from '../Components/Forms/FormSignIn'
@@ -15,6 +16,7 @@ import { Image, View } from 'react-native'
 import CardProduct from '../Components/products/CardProduct'
 import Product from '../Screen/Product'
 import ShoppingCart from '../Screen/ShoppingCart'
+
 
 const stack = createStackNavigator()
 
@@ -53,10 +55,11 @@ export const HomeStack = ({ navigation }) => {
                             />
                         </View>
                     ),
-
                 }}
 
             />
+            <stack.Screen name="Cart" component={Cart} />
+
         </stack.Navigator>
     )
 }
