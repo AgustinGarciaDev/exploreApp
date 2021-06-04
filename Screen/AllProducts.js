@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import productsActions from "../redux/Action/productsActions"
 import { StyleSheet, ScrollView, View, Text, Image } from "react-native"
 import CardProduct from '../Components/products/CardProduct'
-
+import { SearchBar } from 'react-native-elements';
 const AllProducts = (props) => {
 
     const { fetchAllProducts, allProducts } = props
@@ -12,10 +12,18 @@ const AllProducts = (props) => {
         fetchAllProducts()
     }, [])
 
+    const updateSearch = (search) => {
+        console.log("search")
+    };
     return (
 
         <ScrollView >
-            <Text>AllProducts</Text>
+            <SearchBar
+                placeholder="Search product..."
+                onChangeText={updateSearch}
+                platform='ios'
+                containerStyle={styles.input}
+            />
             <View style={styles.cardContainer}>
                 {allProducts.length
                     ? allProducts.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)

@@ -1,6 +1,7 @@
 import { StyleSheet, ScrollView, View, Text, Image } from "react-native"
 import React, { useEffect, useState } from "react"
 import { Button } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient';
 const CardProduct = (props) => {
 
     const { name, coverImage, price, brand, _id } = props.product
@@ -12,15 +13,29 @@ const CardProduct = (props) => {
                 <Text style={styles.textPrice}>Є{price}</Text>
                 <Text style={styles.textBrand}>Brand:{brand}</Text>
             </View>
-            <Button
-                title="View Product"
-                onPress={() => props.navigation.navigate('Product', { id: _id })}
-            />
+            <LinearGradient style={styles.buttonAddCart}
+                colors={['#4158d0', '#c850c0', '#ffcc70']}
+                start={{ y: 0.4, x: 0.9 }}
+                end={{ y: 0.2, x: 0 }}
+            >
+                <Button
+                    type="clear"
+                    title="View product"
+                    onPress={() => props.navigation.navigate('Product', { id: _id })}
+                    buttonStyle={{ width: '100%', height: '100%' }}
+                    titleStyle={{ fontFamily: 'Montserrat_700Bold', color: 'white' }}
+                />
+            </LinearGradient>
         </View>
     )
 }
 const styles = StyleSheet.create({
-
+    buttonAddCart: {
+        marginTop: 30,
+        marginBottom: 30,
+        height: 50,
+        borderRadius: 20
+    },
     cardProductAllProduct: {
         backgroundColor: 'white',
         margin: 30,

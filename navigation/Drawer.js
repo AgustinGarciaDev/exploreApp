@@ -13,8 +13,6 @@ const drawer = createDrawerNavigator()
 const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
-
-
     useEffect(() => {
         loginLocalStoreUser()
     }, [])
