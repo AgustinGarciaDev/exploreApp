@@ -4,20 +4,21 @@ import userActions from "../../redux/Action/userActions"
 import { ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Input, Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
-
+import * as FileSystem from "expo-file-system"
 
 const FormSignUp = ({ createAcount }) => {
-    const [ form, setForm ] = useState({ user:"", email:"", password:"", urlImg:""  })
+    const [ form, setForm ] = useState({ user:"", email:"", password:"", urlImg:"ksdf"  })
     const [image, setImage] = useState(null);
 
     const sendForm = ()=>{
-        const formData = new FormData()
-            formData.append('user', form.user )
-            formData.append('email', form.email )
-            formData.append('password', form.password )
-            formData.append('photo', image.base64 )
-          
-        createAcount( formData )    
+        
+        FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup",image.uri,{
+            uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+            fieldName:"photo",
+            parameters: form 
+        })
+        .then( res => console.log( res ) )
+        
     }
 
     useEffect(() => {
@@ -37,8 +38,8 @@ const FormSignUp = ({ createAcount }) => {
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
-            base64:true,
-            exif:true
+            /* base64:true,
+            exif:true */
         });
         if (!result.cancelled) {
             setImage(result);

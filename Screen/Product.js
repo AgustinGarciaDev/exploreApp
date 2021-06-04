@@ -55,7 +55,7 @@ const Product = (props) => {
             props.buyArticle(article)
         }
     }
-    console.log(article)
+    /* console.log(article) */
 
     if (loading) {
         return null
