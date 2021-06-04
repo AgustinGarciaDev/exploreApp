@@ -5,8 +5,8 @@ import productsReducer from './productReducer'
 
 const mainReducer = combineReducers({
     user: userReducer,
-     /* cart: cartReducer, */
-     productsReducer
+    cart: cartReducer,
+    productsReducer
 })
 
 export default mainReducer

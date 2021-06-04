@@ -13,10 +13,10 @@ const HeroHome = () => {
 
 
     const city = [
-        { id: 1, nombre: "Paris", url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192639.png' },
-        { id: 2, nombre: "Queenstown", url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192710.png' },
-        { id: 3, nombre: "Rio de Janeiro", url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192747.png' },
-        { id: 4, nombre: "San Francisco", url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192733.png' },
+        { id: 1, url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192639.png' },
+        { id: 2, url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192710.png' },
+        { id: 3, url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192747.png' },
+        { id: 4, url: 'http://tingarciadg.com/wp-content/uploads/2021/05/Screenshot-2021-05-30-192733.png' },
     ]
     const _renderItem = ({ item, index }) => {
         return (

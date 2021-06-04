@@ -63,28 +63,28 @@ const SignUp = (props) => {
     }
 
 
-    const SignUpWhitGoogle = async ()=>{
+    const SignUpWhitGoogle = async () => {
 
-       const { type , user } = await Google.logInAsync({
-            androidClientId:`96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
+        const { type, user } = await Google.logInAsync({
+            androidClientId: `96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
         })
-        if( type === "success" ){
-            props.createAcount({    
+        if (type === "success") {
+            props.createAcount({
                 user: user.name,
-                email:user.email,
+                email: user.email,
                 password: 'Hola1234!',
                 urlImg: user.photoUrl,
-                googleFlag:true
+                googleFlag: true
             })
-            .then(data => data 
-            ? props.navigation.navigate("Home")
-            : Toast.show({
-                text1: 'Error try to login again',
-                type: 'error',
-                position: 'bottom',
-            }) )
+                .then(data => data
+                    ? props.navigation.navigate("Home")
+                    : Toast.show({
+                        text1: 'Error try to login again',
+                        type: 'error',
+                        position: 'bottom',
+                    }))
         }
-        else{
+        else {
             Toast.show({
                 text1: message,
                 type: 'error',
@@ -138,7 +138,7 @@ const SignUp = (props) => {
                             size={25}
                         />
                     }
-                    onPress={ ()=>SignUpWhitGoogle() }
+                    onPress={() => SignUpWhitGoogle()}
                     buttonStyle={styles.buttonGoogle}
                     titleStyle={{ color: 'black' }}
                 />
@@ -189,8 +189,8 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapDispatchToProps ={
-    createAcount:userActions.createAcount
+const mapDispatchToProps = {
+    createAcount: userActions.createAcount
 }
 
-export default connect(null, mapDispatchToProps) (SignUp)
+export default connect(null, mapDispatchToProps)(SignUp)
