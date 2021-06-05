@@ -1,6 +1,7 @@
 
 const initialState = {
-    allProducts:[]
+    allProducts:[],
+    filtered:[]
 }
 
 const productsReducer =( state = initialState, action )=>{
@@ -9,7 +10,14 @@ const productsReducer =( state = initialState, action )=>{
         case "FETCHALLPRODUCTS" :
             return{
                 ...state,
-                allProducts: action.payload
+                allProducts: action.payload,
+                filtered:action.payload
+            }
+
+        case "SEARCH":
+            return{
+                ...state,
+                filtered: state.allProducts.filter(article => article.name.toLocaleLowerCase().trim().includes( action.payload.toLocaleLowerCase().trim()))
             }
     
         default: return state

@@ -3,55 +3,129 @@ import { connect } from "react-redux"
 import productsActions from "../redux/Action/productsActions"
 import { StyleSheet, ScrollView, View, Text, Image } from "react-native"
 import CardProduct from '../Components/products/CardProduct'
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Divider } from 'react-native-elements';
 const Accesories = (props) => {
-
-    const { fetchAllProducts, allProducts } = props
+    const { getProducts, filtered, searchAction } = props
+    
+    const [lubircants, setLubricants] = useState([])
+    const [sexGame, setSexGame] = useState([])
+    const [clenear, setClenear] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [ search, setSearch ] = useState("")
 
     useEffect(() => {
-        fetchAllProducts()
-    }, [])
+        if ( !filtered.length && !search) {
+            getProducts()
+        } else { setLoading(false) }
+        filterProducts()
+    }, [filtered])
 
-    const updateSearch = (search) => {
-        console.log("search")
-    };
+
+    const filterProducts = () => {
+
+        let penises = []
+        let vulva = []
+        let butts = []
+
+        if (filtered.length !== 0) {
+            filtered.map(product => {
+                const categories = product.categories
+                categories.map(category => {
+                    if (category.name === 'lubricants') {
+                        penises.push(product)
+                    } else if (category.name === 'sexGame') {
+                        vulva.push(product)
+                    } else if (category.name === 'clenear') {
+                        butts.push(product)
+                    }
+                    return null
+                })
+                return null
+            })
+        }
+
+        setLubricants(penises)
+        setSexGame(vulva)
+        setClenear(butts)
+
+    }
+ 
+    if (loading) {
+        return <Text>Loading</Text>
+    }
     return (
 
         <ScrollView >
             <SearchBar
+                value={ search }
                 placeholder="Search product..."
-                onChangeText={updateSearch}
+                onChangeText={ v =>{ setSearch(v); searchAction( v ) }  }
                 platform='ios'
                 containerStyle={styles.input}
             />
-            <View style={styles.cardContainer}>
-                {allProducts.length
-                    ? allProducts.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
-                    : null
-                }
-            </View>
+
+            { filtered.length && search.length
+
+                ? filtered.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
+
+                : search.length && !filtered.length
+                    ? <Text>No results</Text>
+
+                    : <>
+                        <View style={styles.cardContainer}>
+                        <Text style={ styles.titleCategories }>Lubricants</Text>
+                        <Divider />
+                            { lubircants.length
+                                ? lubircants.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
+                                : null
+                            }
+                        </View>
+
+                        <View style={styles.cardContainer}>
+                                <Text style={ styles.titleCategories }>SexGame</Text>
+                                <Divider />
+                            { sexGame.length
+                                ? sexGame.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
+                                : null
+                            }
+                        </View>
+
+                        <View style={styles.cardContainer}>
+                                <Text style={ styles.titleCategories }>Clenear</Text>
+                                <Divider />
+                            { clenear.length
+                                ? clenear.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
+                                : null
+                            }
+                        </View>
+                        </>
+            }
+
+
         </ScrollView>
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        filtered: state.productsReducer.filtered
+    }
+}
+
+const mapDispatchToProps = {
+    getProducts: productsActions.fetchAllProducts,
+    searchAction: productsActions.searchAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Accesories)
 
 const styles = StyleSheet.create({
     cardContainer: {
         alignItems: "center",
     },
+    titleCategories:{
+        fontSize: 25,
+        textAlign:"center"
+    }
 
 })
-
-
-const mapStateToProps = state => {
-    return {
-        allProducts: state.productsReducer.allProducts
-    }
-}
-
-const mapDispatchToProps = {
-    fetchAllProducts: productsActions.fetchAllProducts
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Accesories)
-
