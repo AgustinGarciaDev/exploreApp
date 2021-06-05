@@ -1,16 +1,22 @@
 import axios from "axios";
+import * as FileSystem from "expo-file-system"
+
 const userActions = {
 
-    createAcount: (infoUser) => {
+    createAcount: ( form, img ) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signup", infoUser)
-                console.log(response)
-                if (!response.data.success) {
-                    return response.data.errores
-                }
-                dispatch({ type: 'SIGNIN_USER', payload: response.data.response })
+                let response = await FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup", img , {
+                uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+                fieldName: "photo",
+                parameters: form
+                })
+                response = JSON.parse( response.body ) 
+    
+                if (!response.success) { return response.response.error }
+                dispatch({ type: 'SIGNIN_USER', payload: response.response })
                 return true
+                
             } catch (error) {
                 console.log(error)
             }

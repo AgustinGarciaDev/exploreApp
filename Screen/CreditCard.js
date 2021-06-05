@@ -4,7 +4,7 @@ import productsActions from "../redux/Action/productsActions"
 import { CreditCardInput } from "react-native-credit-card-input";
 import { StyleSheet, ScrollView, View, Text, ToastAndroid } from "react-native"
 import { Button } from "react-native-elements"
-
+import Toast from 'react-native-toast-message';
 
 
 const CreditCard = ({ route:{ params }, sendEmail })=>{
@@ -23,9 +23,18 @@ const CreditCard = ({ route:{ params }, sendEmail })=>{
                         buttonStyle={styles.payButton}
                         onPress={() =>{
                             creditCard && creditCard.status 
-                            && sendEmail( params.form, creditCard.values,{ cartArticles:params.cart , total:params.total })
-                                .then( res => res.success && ToastAndroid.show("Pago realizado", ToastAndroid.SHORT ) ) }}
-                    />
+                            ? sendEmail( params.form, creditCard.values,{ cartArticles:params.cart , total:params.total })
+                            .then( res => res.success && Toast.show({
+                                text1: 'email sent, enjoy your purchase',
+                                type: 'success',
+                                position: 'bottom',
+                            }) ) 
+                            : Toast.show({
+                                text1: 'Something are wrong',
+                                type: 'error',
+                                position: 'bottom',
+                            })
+                        }}/>
                 </View>
 
 

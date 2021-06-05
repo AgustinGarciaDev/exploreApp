@@ -4,6 +4,7 @@ import { Button, Divider } from 'react-native-elements'
 import { connect } from "react-redux"
 import CardCart from "../Components/Cart/CardCart"
 import LottieView from 'lottie-react-native';
+import Toast from 'react-native-toast-message';
 
 const ShoppingCart = (props) => {
 
@@ -46,7 +47,15 @@ const ShoppingCart = (props) => {
 
                 <View style={styles.buttonsContainer}>
                     <Button buttonStyle={styles.buttons} onPress={() => props.navigation.goBack()} type="outline" title="cancel" />
-                    <Button buttonStyle={styles.buttons} onPress={() => props.navigation.navigate('Checkout', { cart: cart, total })} title="next" />
+                    <Button buttonStyle={styles.buttons} onPress={() =>{
+                        cart.length 
+                        ? props.navigation.navigate('Checkout', { cart: cart, total })
+                        : Toast.show({
+                            text1: 'Your cart is empty',
+                            type: 'error',
+                            position: 'bottom',
+                        })
+                    }} title="next" />
                 </View>
 
             </View>

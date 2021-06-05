@@ -13,6 +13,7 @@ const drawer = createDrawerNavigator()
 const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
+  
     useEffect(() => {
         loginLocalStoreUser()
     }, [])
@@ -85,9 +86,15 @@ const Drawer = (props) => {
             <drawer.Screen name="SexToy" component={SexToyStack} />
             <drawer.Screen name="Accesories" component={AccesoriesStack} />
             <drawer.Screen name="All products" component={AllproductsStack} />
-            <drawer.Screen name="Sign In" component={SignInStack} />
-            <drawer.Screen name="Sign Up" component={SignUpStack} />
-           {/*  <drawer.Screen name="Checkout" component={CheckoutStack} /> */}
+            { !usuarioStatus 
+                ? <>
+                    <drawer.Screen name="Sign In" component={SignInStack} />
+                    <drawer.Screen name="Sign Up" component={SignUpStack} />
+                  </>
+                : null     
+
+            }
+            
             <drawer.Screen name="ShoppingCart" component={ShoppingCartStack} />
         </drawer.Navigator>
 

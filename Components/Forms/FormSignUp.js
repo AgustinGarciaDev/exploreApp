@@ -4,23 +4,24 @@ import userActions from "../../redux/Action/userActions"
 import { TouchableOpacity, ScrollView, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Button, Input, Icon } from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from "expo-file-system"
+import Toast from 'react-native-toast-message';
+
 import { LinearGradient } from 'expo-linear-gradient';
 
-const FormSignUp = ({ createAcount }) => {
+const FormSignUp = ({ createAcount, navigation }) => {
     const [form, setForm] = useState({ user: "", email: "", password: "", urlImg: "ksdf" })
     const [image, setImage] = useState(null);
     const [inputText, setInputText] = useState("Select a file")
+
     const sendForm = () => {
-
-        FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup", image.uri, {
-            uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-            fieldName: "photo",
-            parameters: form
-        })
-            .then(res => console.log(res))
-
-
+        
+        createAcount( form, image.uri )
+        .then( res => res === true ? navigation.navigate("Home"): Toast.show({
+            text1: res,
+            type: 'error',
+            position: 'bottom',
+        }) )
+    
     }
 
     useEffect(() => {
