@@ -7,7 +7,7 @@ import { Button } from "react-native-elements"
 import Toast from 'react-native-toast-message';
 
 
-const CreditCard = ({ route:{ params }, sendEmail })=>{
+const CreditCard = ({ navigation, route:{ params }, sendEmail })=>{
     const [ creditCard, setCreditCard ] = useState()
 
     return <>
@@ -24,11 +24,7 @@ const CreditCard = ({ route:{ params }, sendEmail })=>{
                         onPress={() =>{
                             creditCard && creditCard.status 
                             ? sendEmail( params.form, creditCard.values,{ cartArticles:params.cart , total:params.total })
-                            .then( res => res.success && Toast.show({
-                                text1: 'email sent, enjoy your purchase',
-                                type: 'success',
-                                position: 'bottom',
-                            }) ) 
+                            .then( res => navigation.navigate("PaymentSuccessFull") ) 
                             : Toast.show({
                                 text1: 'Something are wrong',
                                 type: 'error',

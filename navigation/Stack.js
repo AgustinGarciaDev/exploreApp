@@ -16,6 +16,7 @@ import { Image, View } from 'react-native'
 import CardProduct from '../Components/products/CardProduct'
 import Product from '../Screen/Product'
 import ShoppingCart from '../Screen/ShoppingCart'
+import PaymentSuccessFull from "../Screen/PaymentSuccesfull"
 
 const stack = createStackNavigator()
 
@@ -404,6 +405,23 @@ export const ShoppingCartStack = ({ navigation }) => {
                         />
                     ),
                     title: 'Credit card',
+                    headerTitleAlign: "center"
+                }}
+
+            />
+            <stack.Screen name="PaymentSuccessFull" component={PaymentSuccessFull}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: '',
                     headerTitleAlign: "center"
                 }}
 
