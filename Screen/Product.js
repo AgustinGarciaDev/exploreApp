@@ -2,12 +2,15 @@ import { ScrollView, View, Text, Image, StyleSheet, ImageBackground } from "reac
 import React, { useEffect, useState } from "react"
 import { Button } from 'react-native-elements'
 import { connect } from "react-redux"
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
 import Comments from "../Components/products/Comments";
 import cartActions from "../redux/Action/cartActions"
+import Toast from 'react-native-toast-message';
 import commentsActions from '../redux/Action/commentsActions'
-const Product = (props) => {
+import { LinearGradient } from 'expo-linear-gradient';
 
+const Product = (props) => {
+    const [slider1ActiveSlide, setSlider1ActiveSlide] = useState(0);
     const imgCard = [
         "http://tingarciadg.com/wp-content/uploads/2021/06/011-visa.png",
         "http://tingarciadg.com/wp-content/uploads/2021/06/009-discover.png",
@@ -22,11 +25,26 @@ const Product = (props) => {
         getArticle()
         fetchComments()
     }, [])
-    const _renderItem = ({ item, index }) => {
+    const _renderItem = ({ item, index }, parallaxProps) => {
         return (
             <View key={item.id} style={styles.slide}>
-                <ImageBackground source={{ uri: item.photo }} style={styles.image}>
-                </ImageBackground>
+                <ParallaxImage
+                    source={{ uri: item.thumbnail }}
+                    containerStyle={styles.imageContainer}
+                    style={styles.image}
+                    parallaxFactor={0.1}
+                    {...parallaxProps}
+                />
+                <LinearGradient style={{ width: '100%', height: 400 }}
+                    colors={['#a9c9ff', '#ffbbec', '#a9c9ff']}
+                    start={{ y: 0.4, x: 0.9 }}
+                    end={{ y: 0.2, x: 0 }}
+                >
+                    <ImageBackground source={{ uri: item.photo }} style={styles.image}>
+                    </ImageBackground>
+                </LinearGradient>
+
+
             </View >
         )
     }
@@ -50,9 +68,17 @@ const Product = (props) => {
     /* Carrito */
     const buy = () => {
         if (article.units === article.stock) {
-            alert("llegaste al stock pa")
+            Toast.show({
+                text1: 'No more stock available',
+                type: 'error',
+                position: 'bottom',
+            })
         } else {
             props.buyArticle(article)
+            Toast.show({
+                text1: 'Add new product',
+                position: 'bottom',
+            })
         }
     }
     /* console.log(article) */
@@ -71,7 +97,27 @@ const Product = (props) => {
                     sliderWidth={425}
                     itemWidth={425}
                     renderItem={_renderItem}
-                    layout={"stack"}
+                    layout={"tinder"}
+                    onSnapToItem={(index) => setSlider1ActiveSlide(index)}
+                    tappableDots={true}
+                    autoplay={true}
+                    hasParallaxImages={true}
+                    layoutCardOffset={38}
+                />
+                <Pagination
+                    dotsLength={article.productsImages.length}
+                    containerStyle={styles.paginationContainer}
+                    inactiveDotScale={20}
+                    dotStyle={{
+                        width: 10,
+                        height: 10,
+                        borderRadius: 5,
+                        marginHorizontal: 8,
+                        backgroundColor: 'black'
+                    }}
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}
+                    activeDotIndex={slider1ActiveSlide}
                 />
             </View>
             <View style={styles.containerPrecieAndStock}>
@@ -85,11 +131,22 @@ const Product = (props) => {
             </View>
 
             <Text style={styles.textBrand}>{article.brand}</Text>
-            <Button
-                title="Add to card"
-                buttonStyle={styles.buttonAddCart}
-                onPress={buy}
-            />
+            <LinearGradient style={styles.buttonAddCart}
+                colors={['#4158d0', '#c850c0', '#ffcc70']}
+                start={{ y: 0.4, x: 0.9 }}
+                end={{ y: 0.2, x: 0 }}
+            >
+                <Button
+                    type="clear"
+                    title="Add to cart"
+                    onPress={buy}
+                    buttonStyle={{ width: '100%', height: '100%' }}
+                    titleStyle={{ fontFamily: 'Montserrat_700Bold', color: 'white' }}
+
+                />
+            </LinearGradient>
+
+
             <View>
                 <Text style={styles.titleDescripcion}>Descripcion</Text>
                 <Text style={styles.textDescripcion}>{article.description}</Text>
@@ -129,22 +186,21 @@ const mapDispatchToProps = {
 
 const styles = StyleSheet.create({
     containerProduct: {
-        margin: 10
+        margin: 10,
+        backgroundColor: 'white'
     },
     productName: {
         fontFamily: 'DancingScript_400Regular',
         fontSize: 35
     },
     carousel: {
-        marginTop: 35,
-        marginBottom: 35
+
     },
     image: {
         width: "100%",
-        height: 300,
-        backgroundColor: 'gray',
+        height: 400,
         padding: 20,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     containerPrecieAndStock: {
         flexDirection: 'row',
@@ -179,9 +235,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     buttonAddCart: {
-        backgroundColor: 'red',
         marginTop: 30,
-        marginBottom: 30
+        marginBottom: 30,
+        height: 50,
+        borderRadius: 20
     },
     titleDescripcion: {
         fontFamily: 'Montserrat_700Bold',

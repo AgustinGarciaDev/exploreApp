@@ -24,6 +24,11 @@ const productsActions ={
                 }))
         }
     },
+    searchAction:(search)=>{
+        return (dispatch)=>{
+            dispatch({ type:"SEARCH", payload:search })
+        }
+    }
 }
 
 export default productsActions
