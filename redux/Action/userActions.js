@@ -5,7 +5,7 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signup", infoUser)
-                /* console.log("action", response.data) */
+                console.log(response)
                 if (!response.data.success) {
                     return response.data.errores
                 }

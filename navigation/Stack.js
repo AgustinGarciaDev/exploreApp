@@ -224,7 +224,7 @@ export const SignInStack = ({ navigation }) => {
                             type='font-awesome-5'
                             color='#ffc371'
                             onPress={() => navigation.openDrawer()}
-                            containerStyle={{ marginRight: 25 }}
+                            containerStyle={{ marginLeft: 25 }}
 
                         />
                     ),
@@ -248,7 +248,7 @@ export const SignInStack = ({ navigation }) => {
                             type='font-awesome-5'
                             color='#ffc371'
                             onPress={() => navigation.openDrawer()}
-                            containerStyle={{ marginRight: 25 }}
+                            containerStyle={{ marginLeft: 25 }}
 
                         />
                     ),
@@ -306,7 +306,7 @@ export const SignUpStack = ({ navigation }) => {
                             type='font-awesome-5'
                             color='#ffc371'
                             onPress={() => navigation.openDrawer()}
-                            containerStyle={{ marginRight: 25 }}
+                            containerStyle={{ marginLeft: 25 }}
 
                         />
                     ),
