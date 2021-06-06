@@ -66,7 +66,7 @@ const Drawer = (props) => {
                         ? <ImageBackground resizeMode='cover' style={styles.containerUserFoto} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/blurred-pop-abstract-background-with-vivid-primary-colors-min-scaled.jpg' }}>
                             <View style={styles.containerPhotoAndText}>
                                 <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{ uri: usuarioStatus.img }} />
-                                <Text style={styles.nameUser}>{usuarioStatus.user}</Text>
+                                <Text style={styles.nameUser}>{usuarioStatus.name}</Text>
 
                             </View>
                         </ImageBackground>
