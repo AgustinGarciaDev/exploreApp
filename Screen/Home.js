@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView, StyleSheet, ImageBackground, Text, View } from 'react-native';
-/* import HeroHome from '../Components/Home/HeroHome' */
 import ContentHome from '../Components/Home/ContentHome'
 import { Button } from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
