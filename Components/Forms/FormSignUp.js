@@ -8,14 +8,14 @@ import Toast from 'react-native-toast-message';
 
 import { LinearGradient } from 'expo-linear-gradient';
 
-const FormSignUp = ({ createAcount, navigation }) => {
+const FormSignUp = ({ createAcountWithPhoto, navigation }) => {
     const [form, setForm] = useState({ user: "", email: "", password: "", urlImg: "ksdf" })
     const [image, setImage] = useState(null);
     const [inputText, setInputText] = useState("Select a file")
 
     const sendForm = () => {
         
-        createAcount( form, image.uri )
+        createAcountWithPhoto( form, image.uri )
         .then( res => res === true ? navigation.navigate("Home"): Toast.show({
             text1: res,
             type: 'error',
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    createAcount: userActions.createAcount
+    createAcountWithPhoto: userActions.createAcountWithPhoto
 }
 
 

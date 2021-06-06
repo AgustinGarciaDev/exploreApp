@@ -3,7 +3,7 @@ import * as FileSystem from "expo-file-system"
 
 const userActions = {
 
-    createAcount: (form, img) => {
+    createAcountWithPhoto: (form, img) => {
         return async (dispatch, getState) => {
             try {
                 let response = await FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup", img, {
@@ -17,6 +17,23 @@ const userActions = {
                 dispatch({ type: 'SIGNIN_USER', payload: response.response })
                 return true
 
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    },
+    createAcount: (infoUser) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.post("https://explore-2021.herokuapp.com/api/user/signup", infoUser)
+                if (response) {
+                    if (!response.data.success) {
+                        return response.data
+                    } else {
+                        dispatch({ type: 'SIGNIN_USER', payload: response.data.response })
+                        return true
+                    }
+                }
             } catch (error) {
                 console.log(error)
             }
