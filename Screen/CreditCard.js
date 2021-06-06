@@ -5,7 +5,7 @@ import { CreditCardInput } from "react-native-credit-card-input";
 import { StyleSheet, ScrollView, View, Text, ToastAndroid } from "react-native"
 import { Button } from "react-native-elements"
 import Toast from 'react-native-toast-message';
-
+import PaypalButton from "../Components/Cart/paypalButton"
 
 const CreditCard = ({ navigation, route:{ params }, sendEmail })=>{
     const [ creditCard, setCreditCard ] = useState()
@@ -31,6 +31,10 @@ const CreditCard = ({ navigation, route:{ params }, sendEmail })=>{
                                 position: 'bottom',
                             })
                         }}/>
+                </View>
+
+                <View>
+                    <PaypalButton />
                 </View>
 
 
