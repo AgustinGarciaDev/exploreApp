@@ -16,7 +16,7 @@ const CreditCard = ({ navigation, route:{ params }, sendEmail })=>{
             <View style={styles.mainContainer}>
 
                 <CreditCardInput onChange={ object =>setCreditCard({ ...object, values:{ ...object.values, cardBrand: object.values.type }}) } />
-
+    {/* sdasd */}
                 <View >
                     <Button
                         title="Pay"
