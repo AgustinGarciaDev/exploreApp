@@ -11,7 +11,9 @@ const CardProduct = (props) => {
             <Image key={_id} style={styles.coverImg} source={{ uri: coverImage }} />
             <View style={styles.infoContainer}>
                 <Text style={styles.textPrice}>Є{price}</Text>
-                <Text style={styles.textBrand}>Brand:{brand}</Text>
+                <Text style={styles.textBrand}>
+                    <Text style={styles.textBrandName}>Brand: </Text>
+                    {brand}</Text>
             </View>
             <LinearGradient style={styles.buttonAddCart}
                 colors={['#4158d0', '#c850c0', '#ffcc70']}
@@ -31,8 +33,8 @@ const CardProduct = (props) => {
 }
 const styles = StyleSheet.create({
     buttonAddCart: {
-        marginTop: 30,
-        marginBottom: 30,
+        marginTop: 10,
+        marginBottom: 10,
         height: 50,
         borderRadius: 20
     },
@@ -58,25 +60,25 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     coverImg: {
-        width: 320,
-        height: 320,
+        width: 280,
+        height: 280,
         alignSelf: 'center',
-        marginTop: 35,
-        marginBottom: 35
+        marginTop: 10,
+        marginBottom: 10
     },
-    infoContainer: {
-        flexDirection: 'column'
+    textBrandName: {
+        fontFamily: 'Montserrat_700Bold',
+        fontSize: 26,
     },
     textPrice: {
         fontFamily: 'Montserrat_700Bold',
         fontSize: 40,
-        marginTop: 10,
-        marginBottom: 10,
     },
     textBrand: {
         fontFamily: 'Montserrat_400Regular',
-        fontSize: 20,
+        fontSize: 22,
         marginTop: 10,
+        letterSpacing: 2,
         marginBottom: 20,
     }
 })

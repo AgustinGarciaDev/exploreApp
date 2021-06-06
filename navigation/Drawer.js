@@ -4,16 +4,18 @@ import { HomeStack, SexToyStack, SignInStack, SignUpStack, AccesoriesStack, Allp
 import { ShoppingCartStack } from "./Stack"
 import { connect } from 'react-redux';
 import userActions from '../redux/Action/userActions'
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, Image, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import cartActions from '../redux/Action/cartActions';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+
 
 const drawer = createDrawerNavigator()
 
 const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
-  
+
     useEffect(() => {
         loginLocalStoreUser()
     }, [])
@@ -61,18 +63,33 @@ const Drawer = (props) => {
             <DrawerContentScrollView {...props}>
                 {
                     usuarioStatus
-                        ? <View style={styles.containerUserFoto}>
-                            <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{ uri: usuarioStatus.img }} />
-                            <Text style={styles.nameUser}>{usuarioStatus.user}</Text>
+                        ? <ImageBackground resizeMode='cover' style={styles.containerUserFoto} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/blurred-pop-abstract-background-with-vivid-primary-colors-min-scaled.jpg' }}>
+                            <View style={styles.containerPhotoAndText}>
+                                <Image style={{ width: 80, height: 80, borderRadius: 100 }} source={{ uri: usuarioStatus.img }} />
+                                <Text style={styles.nameUser}>{usuarioStatus.user}</Text>
 
-                        </View>
-                        : <View style={styles.containerUserFoto}>
+                            </View>
+                        </ImageBackground>
+                        : <View style={styles.containerLogo}>
                             <Image style={{ width: "60%", height: 80, borderRadius: 100 }} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-4.png' }} />
                         </View>
                 }
                 <DrawerItemList {...props} />
                 { usuarioStatus &&
-                    <DrawerItem label="Sign Out" onPress={() => SignOut()} />
+                    <DrawerItem
+                        label="Sign Out"
+                        labelStyle={{
+                            fontSize: 20,
+                            fontFamily: 'Montserrat_400Regular'
+                        }}
+                        onPress={() => SignOut()}
+                        icon={() => {
+                            return (
+                                <Image style={{ width: 30, height: 30 }} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/sign-out.png' }} />
+                            );
+                        }}
+                    />
+
                 }
             </DrawerContentScrollView>
         );
@@ -81,23 +98,128 @@ const Drawer = (props) => {
 
     return (
 
-        <drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <drawer.Screen name="Home" component={HomeStack} />
-            <drawer.Screen name="SexToy" component={SexToyStack} />
-            <drawer.Screen name="Accesories" component={AccesoriesStack} />
-            <drawer.Screen name="All products" component={AllproductsStack} />
-            { !usuarioStatus 
-                ? <>
-                    <drawer.Screen name="Sign In" component={SignInStack} />
-                    <drawer.Screen name="Sign Up" component={SignUpStack} />
-                  </>
-                : null     
+        <drawer.Navigator
+            drawerContent={props => <CustomDrawerContent {...props} />}
+            drawerStyle={{
+                backgroundColor: 'white',
+                width: "85%",
+                color: 'red'
+            }}
+            drawerContentOptions={{
+                activeTintColor: 'white',
+                activeBackgroundColor: '#EBA0FA',
+                inactiveTintColor: 'blue',
+                inactiveBackgroundColor: 'white',
+                labelStyle: {
+                    marginLeft: 5,
+                    fontSize: 20,
+                    fontFamily: 'Montserrat_400Regular'
+                }
+            }}
 
-            }
-            
-            <drawer.Screen name="ShoppingCart" component={ShoppingCartStack} />
+        >
+            <drawer.Screen
+                name="Home"
+                component={HomeStack}
+                options={{
+                    title: 'Home',
+                    drawerIcon: () => (
+
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/home.png' }}
+                        />
+                    )
+                }}
+            />
+            <drawer.Screen
+                name="Sign In"
+                component={SignInStack}
+                options={{
+                    title: 'Sign In',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/sign-in-1.png' }}
+                        />
+
+                    ),
+                }}
+            />
+            <drawer.Screen name="Sign Up" component={SignUpStack}
+                options={{
+                    title: 'Sign Up',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/add-user.png' }}
+                        />
+
+                    )
+                }}
+            />
+            <drawer.Screen
+                name="SexToy"
+                component={SexToyStack}
+                options={{
+                    title: 'Sex Toys',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/eee.png' }}
+                        />
+
+                    )
+                }}
+            />
+            <drawer.Screen
+                name="Accesories"
+                component={AccesoriesStack}
+                options={{
+                    title: 'Accesories',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/esposas.png' }}
+                        />
+
+                    )
+                }}
+
+            />
+            <drawer.Screen
+                name="All products"
+                component={AllproductsStack}
+                options={{
+                    title: 'All products',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 30, height: 30 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/shopping-bag.png' }}
+                        />
+
+                    ),
+                    labelStyle: {
+                        color: 'red'
+                    }
+                }}
+
+            />
+            < drawer.Screen
+                name="ShoppingCart"
+                component={ShoppingCartStack}
+                options={{
+                    title: 'Shop Cart',
+                    drawerIcon: () => (
+                        <Image
+                            style={{ width: 55, height: 55 }}
+                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/esposas.png' }}
+                        />
+
+                    )
+                }}
+            />
         </drawer.Navigator>
-
     )
 }
 const styles = StyleSheet.create({
@@ -108,11 +230,22 @@ const styles = StyleSheet.create({
         borderRadius: 100
     },
     nameUser: {
-        color: 'black',
+        color: 'white',
         textAlign: 'center',
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: 'Montserrat_700Bold'
     },
     containerUserFoto: {
+        alignItems: 'flex-start',
+        width: "100%",
+        height: 150,
+    },
+    containerPhotoAndText: {
+        marginLeft: 30,
+        marginTop: 30
+    },
+    containerLogo: {
+        justifyContent: 'center',
         alignItems: 'center'
     }
 

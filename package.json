@@ -32,6 +32,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-credit-card-input": "^0.4.1",
+    "react-native-dropdown-picker": "^5.1.19",
     "react-native-elements": "^3.4.1",
     "react-native-fast-image": "^8.3.4",
     "react-native-form-select-picker": "0.0.12",
@@ -51,7 +52,8 @@
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

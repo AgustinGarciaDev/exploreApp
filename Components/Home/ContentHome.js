@@ -4,12 +4,9 @@ import { Button, Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-const ContentHome = () => {
+const ContentHome = (props) => {
     return (
         <>
-            {/*   <View>
-                <Text style={styles.titleContent}>Explore our categories</Text>
-            </View> */}
             <ImageBackground style={styles.image} source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/05/Diseno-sin-titulo-8.png' }}>
                 <Text style={styles.titleCard}>SexToy</Text>
                 <View>
@@ -18,18 +15,21 @@ const ContentHome = () => {
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'penises' })}
                     />
                     <Button
                         title="For vulva"
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'vulva' })}
                     />
                     <Button
                         title="For butts"
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'butt' })}
                     />
                 </View>
             </ImageBackground>
@@ -41,18 +41,21 @@ const ContentHome = () => {
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'sexgame' })}
                     />
                     <Button
                         title="Clenears"
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'clenear' })}
                     />
                     <Button
                         title="Lubricants"
                         type="outline"
                         buttonStyle={styles.buttonCategory}
                         titleStyle={{ color: 'white', fontFamily: 'Montserrat_700Bold' }}
+                        onPress={() => props.navigation.navigate('Category', { id: 'lubricants' })}
                     />
                 </View>
             </ImageBackground>

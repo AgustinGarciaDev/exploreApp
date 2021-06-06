@@ -16,6 +16,7 @@ import { Image, View } from 'react-native'
 import CardProduct from '../Components/products/CardProduct'
 import Product from '../Screen/Product'
 import ShoppingCart from '../Screen/ShoppingCart'
+import FilterCategories from '../Components/Categories/FilterCategories'
 import PaymentSuccessFull from "../Screen/PaymentSuccesfull"
 
 const stack = createStackNavigator()
@@ -59,6 +60,34 @@ export const HomeStack = ({ navigation }) => {
 
             />
             <stack.Screen name="Cart" component={Cart} />
+
+            <stack.Screen name="Category" component={FilterCategories}
+                options={{
+                    headerRight: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: 'Category',
+                    headerTitleAlign: "center"
+                }}
+
+            />
 
         </stack.Navigator>
     )

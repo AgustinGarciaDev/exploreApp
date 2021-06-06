@@ -4,21 +4,21 @@ import productsActions from "../redux/Action/productsActions"
 import { StyleSheet, ScrollView, View, Text, Image, } from "react-native"
 import CardProduct from '../Components/products/CardProduct'
 import { SearchBar, Divider } from 'react-native-elements';
-
+import LottieView from 'lottie-react-native';
 const Sextoy = (props) => {
     const { getProducts, filtered, searchAction } = props
-    
+
     const [sexToyPennis, setSexToyPennis] = useState([])
     const [sexToyVulva, setSexToyVulva] = useState([])
     const [sexToyButts, setSexToyButts] = useState([])
     const [loading, setLoading] = useState(true)
-    const [ search, setSearch ] = useState("")
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
-        if ( !filtered.length && !search ) { getProducts() }
+        if (!filtered.length && !search) { getProducts() }
         else { setLoading(false) }
         filterProducts()
-    },[ filtered ])
+    }, [filtered])
 
     const filterProducts = () => {
 
@@ -48,62 +48,81 @@ const Sextoy = (props) => {
         setSexToyButts(butts)
     }
 
-  
+
     if (loading) {
-        return <Text>Loading</Text>
+        return (
+            <View style={styles.containerLottie}>
+                <LottieView
+                    style={styles.cartEmpty}
+                    source={require("../assets/Animations/57882-mouth.json")}
+                    autoPlay
+                    loop
+                />
+            </View>
+        )
     }
     return (
 
         <ScrollView >
             <SearchBar
-            value={ search }
+                value={search}
                 placeholder="Search product..."
-                onChangeText={ v=>{ setSearch( v );searchAction(v) }}
+                onChangeText={v => { setSearch(v); searchAction(v) }}
                 platform='ios'
                 containerStyle={styles.input}
             />
 
             {   filtered.length && search.length
 
-                    ?filtered.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
+                ? filtered.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
 
-                    : search.length && !filtered.length
-                        ? <Text>No results</Text>
+                : search.length && !filtered.length
+                    ? <View style={styles.containerNotSearch}>
+                        <Text style={styles.textNoresult}>
+                            No results found for your search
+                        </Text>
+                        <LottieView
+                            style={styles.cartEmpty}
+                            source={require("../assets/Animations/6926-sad-package.json")}
+                            autoPlay
+                            loop
+                        />
+                    </View>
 
-                        : <> 
-                            <View>
-                                <Text style={ styles.titleCategories }>Sex Toys for Penises</Text>
-                                <Divider />
-                                <View style={styles.cardContainer}>
-                                {   sexToyPennis.length
+                    : <>
+                        <View>
+                            <Text style={styles.titleCategories}>Sex Toys for Penises</Text>
+                            <Divider />
+                            <View style={styles.cardContainer}>
+                                {sexToyPennis.length
                                     ? sexToyPennis.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
                                     : null
                                 }
-                                </View>
                             </View>
-                    
-                            <View>
-                                <Text style={ styles.titleCategories }>Sex Toys for Vulvas</Text>
-                                <Divider />
-                                <View style={styles.cardContainer}>
-                                {   sexToyVulva.length
+                        </View>
+
+                        <View>
+                            <Text style={styles.titleCategories}>Sex Toys for Vulvas</Text>
+                            <Divider />
+                            <View style={styles.cardContainer}>
+                                {sexToyVulva.length
                                     ? sexToyVulva.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
                                     : null
                                 }
-                                </View>
                             </View>
-                    
-                            <View>
-                                <Text style={ styles.titleCategories }>Sex Toys for Butts</Text>
-                                <Divider />
-                                <View style={styles.cardContainer}>
-                                {   sexToyButts.length
+                        </View>
+
+                        <View>
+                            <Text style={styles.titleCategories}>Sex Toys for Butts</Text>
+                            <Divider />
+                            <View style={styles.cardContainer}>
+                                {sexToyButts.length
                                     ? sexToyButts.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
                                     : null
                                 }
-                                </View>
                             </View>
-                        </>
+                        </View>
+                    </>
             }
         </ScrollView>
     )
@@ -125,11 +144,39 @@ export default connect(mapStateToProps, mapDispatchToProps)(Sextoy)
 
 
 const styles = StyleSheet.create({
+
     cardContainer: {
         alignItems: "center",
     },
-    titleCategories:{
+    titleCategories: {
         fontSize: 25,
-        textAlign:"center"
+        textAlign: "center"
+    },
+    containerNotSearch: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 50
+    },
+    cartEmpty: {
+        width: 280,
+        height: 280,
+
+    },
+    textNoresult: {
+        fontSize: 30,
+        fontFamily: 'Montserrat_400Regular',
+        textAlign: 'center'
+
+    },
+    cartEmpty: {
+        width: 400,
+        height: 400,
+
+    },
+    containerLottie: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
     }
+
 })
