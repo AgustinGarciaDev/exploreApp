@@ -32,7 +32,7 @@ const Home = (props) => {
                     />
 
                 </ImageBackground>
-
+                {/*  view*/}
             </View >
         )
     }
