@@ -42,7 +42,7 @@ const AllProducts = (props) => {
                 {filtered.length
                     ? filtered.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)
                     : <View style={styles.containerNotSearch}>
-                        <Text style={styles.textNoresult}>we don't have any products whith letter "{busqueda}" </Text>
+                        <Text style={styles.textNoresult}>We don't have any products whith letter "{busqueda}" </Text>
                         <LottieView
                             style={styles.cartEmpty}
                             source={require("../assets/Animations/6926-sad-package.json")}

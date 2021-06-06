@@ -7,11 +7,7 @@ import userActions from '../redux/Action/userActions'
 import { ImageBackground, StyleSheet, Text, View, Image, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import cartActions from '../redux/Action/cartActions';
-import { Icon } from 'react-native-elements/dist/icons/Icon';
-
-
 const drawer = createDrawerNavigator()
-
 const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
@@ -132,32 +128,37 @@ const Drawer = (props) => {
                     )
                 }}
             />
-            <drawer.Screen
-                name="Sign In"
-                component={SignInStack}
-                options={{
-                    title: 'Sign In',
-                    drawerIcon: () => (
-                        <Image
-                            style={{ width: 30, height: 30 }}
-                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/sign-in-1.png' }}
-                        />
+            {
+                !usuarioStatus &&
+                <>
+                    <drawer.Screen
+                        name="Sign In"
+                        component={SignInStack}
+                        options={{
+                            title: 'Sign In',
+                            drawerIcon: () => (
+                                <Image
+                                    style={{ width: 30, height: 30 }}
+                                    source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/sign-in-1.png' }}
+                                />
 
-                    ),
-                }}
-            />
-            <drawer.Screen name="Sign Up" component={SignUpStack}
-                options={{
-                    title: 'Sign Up',
-                    drawerIcon: () => (
-                        <Image
-                            style={{ width: 30, height: 30 }}
-                            source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/add-user.png' }}
-                        />
+                            ),
+                        }}
+                    />
+                    <drawer.Screen name="Sign Up" component={SignUpStack}
+                        options={{
+                            title: 'Sign Up',
+                            drawerIcon: () => (
+                                <Image
+                                    style={{ width: 30, height: 30 }}
+                                    source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/add-user.png' }}
+                                />
 
-                    )
-                }}
-            />
+                            )
+                        }}
+                    />
+                </>
+            }
             <drawer.Screen
                 name="SexToy"
                 component={SexToyStack}

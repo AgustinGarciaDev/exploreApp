@@ -26,7 +26,7 @@ const SignUp = (props) => {
                 // Get the user's name using Facebook's Graph API
                 const response = await fetch(`https://graph.facebook.com/me?fields=id,first_name,email,last_name,picture&access_token=${token}`);
                 const dataUser = await response.json()
-                console.log("soy success")
+                console.log(dataUser)
                 props.createAcount({
                     user: `${dataUser.first_name}${dataUser.last_name}`,
                     email: dataUser.email,
@@ -34,14 +34,7 @@ const SignUp = (props) => {
                     urlImg: dataUser.picture.data.url,
                     googleFlag: true
                 })
-                    .then(data => data
-                        ? props.navigation.navigate("Home")
-                        : Toast.show({
-                            text1: 'Error try to login again',
-                            type: 'error',
-                            position: 'bottom',
-                        }))
-
+                props.navigation.navigate("Home")
                 Toast.show({
                     text1: 'Welcome👋',
                     position: 'bottom',

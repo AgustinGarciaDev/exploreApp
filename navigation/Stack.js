@@ -86,6 +86,30 @@ export const HomeStack = ({ navigation }) => {
                     title: 'Category',
                     headerTitleAlign: "center"
                 }}
+            />
+            <stack.Screen name="Product" component={Product}
+                options={{
+                    headerLeft: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: ''
+                }}
 
             />
 
@@ -120,6 +144,30 @@ export const SexToyStack = ({ navigation }) => {
                     ),
                     title: ''
                 }}
+            />
+            <stack.Screen name="Product" component={Product}
+                options={{
+                    headerLeft: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: ''
+                }}
 
             />
         </stack.Navigator>
@@ -139,6 +187,30 @@ export const AccesoriesStack = ({ navigation }) => {
                             onPress={() => navigation.openDrawer()}
                             containerStyle={{ marginLeft: 25 }}
 
+                        />
+                    ),
+                    headerRight: () => (
+                        <Icon
+                            name='shopping-cart'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.navigate("ShoppingCart")}
+                            containerStyle={{ marginRight: 25 }}
+
+                        />
+                    ),
+                    title: ''
+                }}
+            />
+            <stack.Screen name="Product" component={Product}
+                options={{
+                    headerLeft: () => (
+                        <Icon
+                            name='bars'
+                            type='font-awesome-5'
+                            color='#ffc371'
+                            onPress={() => navigation.openDrawer()}
+                            containerStyle={{ marginLeft: 25 }}
                         />
                     ),
                     headerRight: () => (

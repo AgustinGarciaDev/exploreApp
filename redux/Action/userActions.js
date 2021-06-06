@@ -3,20 +3,20 @@ import * as FileSystem from "expo-file-system"
 
 const userActions = {
 
-    createAcount: ( form, img ) => {
+    createAcount: (form, img) => {
         return async (dispatch, getState) => {
             try {
-                let response = await FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup", img , {
-                uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-                fieldName: "photo",
-                parameters: form
+                let response = await FileSystem.uploadAsync("https://explore-2021.herokuapp.com/api/user/signup", img, {
+                    uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+                    fieldName: "photo",
+                    parameters: form
                 })
-                response = JSON.parse( response.body ) 
-    
+                response = JSON.parse(response.body)
+
                 if (!response.success) { return response.response.error }
                 dispatch({ type: 'SIGNIN_USER', payload: response.response })
                 return true
-                
+
             } catch (error) {
                 console.log(error)
             }

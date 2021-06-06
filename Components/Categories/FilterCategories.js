@@ -7,6 +7,8 @@ import LottieView from 'lottie-react-native'
 import CardProduct from '../products/CardProduct'
 const FilterCategories = (props) => {
 
+    console.log(props.navigation)
+
     const { getProducts, filtered, searchAction } = props
 
     const [productCategory, setProductCategory] = useState([])
