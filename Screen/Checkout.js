@@ -3,10 +3,11 @@ import { StyleSheet, ScrollView, View, Text, TextInput } from "react-native"
 import SelectPicker from 'react-native-form-select-picker';
 import { Button } from "react-native-elements"
 import axios from 'axios'
+import Toast from 'react-native-toast-message';
 
 const Checkout = ({ navigation, route: { params } }) => {
     const [countries, setCountries] = useState([])
-    const [form, setForm] = useState({ email: "", firstName: "", lastName: "", adress: "", apartment: "", city: "", country: "", postCode: "", phone: "" })
+    const [form, setForm] = useState({ email: "", firstName: "", lastName: "", adress: "", apartment: "", city: "", country: "a", postCode: "", phone: "" })
 
     useEffect(() => {
         axios.get("https://restcountries.eu/rest/v2/all")
@@ -112,7 +113,17 @@ const Checkout = ({ navigation, route: { params } }) => {
             <Button
                 title="Let's do it"
                 buttonStyle={styles.payButton}
-                onPress={() => navigation.navigate("CreditCard", { form, cart: params.cart, total: params.total })}
+                onPress={() => {
+
+                    console.log(Object.values(form).some(value => value.trim() === ""))
+                    !Object.values(form).some(value => value.trim() === "")
+                        ? navigation.navigate("CreditCard", { form, cart: params.cart, total: params.total })
+                        : Toast.show({
+                            text1: 'you must complete all fields',
+                            type: 'error',
+                            position: 'bottom',
+                        })
+                }}
             />
 
 

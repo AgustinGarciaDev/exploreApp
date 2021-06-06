@@ -15,6 +15,7 @@ const drawer = createDrawerNavigator()
 const Drawer = (props) => {
 
     const { usuarioStatus, SignOut } = props
+
     useEffect(() => {
         loginLocalStoreUser()
     }, [])
@@ -219,7 +220,6 @@ const Drawer = (props) => {
                 }}
             />
         </drawer.Navigator>
-
     )
 }
 const styles = StyleSheet.create({
