@@ -58,7 +58,7 @@ const CardCart = (props) => {
 
         </View>
         <View style={styles.tallaContainer}>
-            <Text style={{ color: "#454242" }}>algo</Text>
+            <Text style={{ color: "#454242" }}></Text>
             <View style={{ flexDirection: "row" }}>
                 <Button onPress={remove} titleStyle={styles.titleStyle} buttonStyle={styles.buttonStyle} type="outline" title="Remove" />
             </View>

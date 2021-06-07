@@ -149,8 +149,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     titleCategories: {
-        fontSize: 25,
-        textAlign: "center"
+        fontSize: 35,
+        textAlign: "center",
+        fontFamily: 'Montserrat_400Regular',
     },
     containerNotSearch: {
         justifyContent: 'center',

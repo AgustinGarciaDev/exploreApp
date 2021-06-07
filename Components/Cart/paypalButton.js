@@ -1,12 +1,12 @@
 import React from "react"
-import { View,Text } from "react-native"
+import { View, Text } from "react-native"
 
 
-const PaypalButton =()=>{
+const PaypalButton = () => {
 
-return <View>
-        <Text>Hola</Text>
-</View>
+        return <View>
+                <Text></Text>
+        </View>
 
 }
 

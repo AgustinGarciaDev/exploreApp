@@ -8,6 +8,9 @@ const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'SIGNIN_USER':
+            if (action.payload.user) {
+                action.payload.name = action.payload.user
+            }
             AsyncStorage.setItem('userLogged', JSON.stringify({ foto: action.payload.img, name: action.payload.name }))
             AsyncStorage.setItem('token', action.payload.token)
             return {
@@ -21,7 +24,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 usuarioStatus: null
             }
-      
+
         default:
             return state
 
