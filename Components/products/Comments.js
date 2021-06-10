@@ -24,15 +24,23 @@ const Comments = (props) => {
 
     const addComment = async () => {
 
-        var response = await props.fetchComments({ comment: newComment.mensaje, token: props.usuarioStatus.token }, props.idArticle)
-        if (response) {
-            setRenderComment(response)
-            /*                 props.socket.emit('NewMessage') */
-            setNewComment({
-                ...newComment,
-                mensaje: ""
-            })
+        if (props.usuarioStatus) {
+            var response = await props.fetchComments({ comment: newComment.mensaje, token: props.usuarioStatus.token }, props.idArticle)
+            if (response) {
+                setRenderComment(response)
+                setNewComment({
+                    ...newComment,
+                    mensaje: ""
+                })
+            }
+        } else {
+            Toast.show({
+                text1: 'You must be logged in to comment',
+                type: 'error',
+                position: 'bottom',
+            });
         }
+
     }
 
     const deleteComment = async (id) => {

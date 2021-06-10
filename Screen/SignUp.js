@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import * as Facebook from 'expo-facebook';
 import * as Google from "expo-google-app-auth"
@@ -14,7 +14,7 @@ const SignUp = (props) => {
 
         try {
             await Facebook.initializeAsync({
-                appId: '768205227393989',
+                appId: process.env.REACT_APP_FACEBOOK_ID,
             });
             const {
                 type,
@@ -30,7 +30,7 @@ const SignUp = (props) => {
                 props.createAcount({
                     user: `${dataUser.first_name}${dataUser.last_name}`,
                     email: dataUser.email,
-                    password: "Hola1234!",
+                    password: process.env.REACT_APP_PASS,
                     urlImg: dataUser.picture.data.url,
                     googleFlag: true
                 })
@@ -61,13 +61,13 @@ const SignUp = (props) => {
     const SignUpWhitGoogle = async () => {
 
         const { type, user } = await Google.logInAsync({
-            androidClientId: `96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
+            androidClientId: process.env.REACT_APP_GOOGLE_ID
         })
         if (type === "success") {
             props.createAcount({
                 user: user.name,
                 email: user.email,
-                password: 'Hola1234!',
+                password: process.env.REACT_APP_PASS,
                 urlImg: user.photoUrl,
                 googleFlag: true
             })

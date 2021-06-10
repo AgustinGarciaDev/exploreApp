@@ -85,8 +85,6 @@ const FilterCategories = (props) => {
 
                             :
                             <View>
-                                <Text style={styles.titleCategories}>Sex Toys for Penises</Text>
-                                <Divider />
                                 <View style={styles.cardContainer}>
                                     {productCategory.length
                                         ? productCategory.map(product => <CardProduct navigation={props.navigation} key={product._id} product={product} />)

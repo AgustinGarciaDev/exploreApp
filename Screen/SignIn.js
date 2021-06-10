@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux"
 import userActions from "../redux/Action/userActions"
 import Toast from 'react-native-toast-message';
-import { ScrollView, StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import * as Google from "expo-google-app-auth"
 import * as Facebook from 'expo-facebook';
@@ -13,7 +13,7 @@ const SignIn = (props) => {
 
         try {
             await Facebook.initializeAsync({
-                appId: '768205227393989',
+                appId: process.env.REACT_APP_FACEBOOK_ID,
             });
             const {
                 type,
@@ -29,7 +29,7 @@ const SignIn = (props) => {
                 props.createAcount({
                     user: `${dataUser.first_name}${dataUser.last_name}`,
                     email: dataUser.email,
-                    password: "Hola1234!",
+                    password: process.env.REACT_APP_PASS,
                     urlImg: dataUser.picture.data.url,
                     googleFlag: true
                 })
@@ -67,10 +67,10 @@ const SignIn = (props) => {
     const SignUpWhitGoogle = async () => {
 
         const { type, user } = await Google.logInAsync({
-            androidClientId: `96796139704-ojuiqbvsmokomd89cl58dad04mvfkr9e.apps.googleusercontent.com`
+            androidClientId: process.env.REACT_APP_GOOGLE_ID
         })
         if (type === "success") {
-            props.signInUser({ email: user.email, password: 'Hola1234!' })
+            props.signInUser({ email: user.email, password: process.env.REACT_APP_PASS })
                 .then(data => data
                     ? props.navigation.navigate("Home")
                     : Toast.show({

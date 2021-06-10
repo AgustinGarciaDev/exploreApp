@@ -1,6 +1,6 @@
 import { ScrollView, View, Text, Image, StyleSheet, ImageBackground } from "react-native"
 import React, { useEffect, useState } from "react"
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import { connect } from "react-redux"
 import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
 import Comments from "../Components/products/Comments";
@@ -145,13 +145,11 @@ const Product = (props) => {
 
                 />
             </LinearGradient>
-
-
             <View>
-                <Text style={styles.titleDescripcion}>Descripcion</Text>
+                <Text style={styles.titleDescripcion}>Description</Text>
                 <Text style={styles.textDescripcion}>{article.description}</Text>
             </View>
-            <Text style={styles.titleDescripcion}>Medios de pago</Text>
+            <Text style={styles.titleDescripcion}>Payment methods</Text>
             <View style={styles.containerCards}>
                 {imgCard.map((card, index) => <Image style={styles.cardImage} key={index} source={{ uri: card }} />)}
 
@@ -163,6 +161,68 @@ const Product = (props) => {
                     idArticle={article._id}
                     setRenderComment={setRenderComment}
                 />
+            </View>
+            <View>
+                <LinearGradient
+                    // Background Linear Gradient
+                    colors={['#e83e8c', '#6f42c1']}
+                    style={styles.background}
+                    locations={[0.2, 1]}
+                    start={{ x: 0.1, y: 0.2 }}
+                />
+                <View style={styles.containerBlockIcon}>
+                    <View style={styles.blockIconAndText}>
+                        <Icon
+                            raised
+                            size={50}
+                            type='font-awesome-5' name="truck"
+                        />
+                        <Text style={styles.titleBlockIcon}>Free Delivery</Text>
+                        <Text style={styles.textBlockIcon}>On Orders Over £50</Text>
+                    </View>
+                    <View style={styles.blockIconAndText}>
+                        <Icon
+                            raised
+                            size={50}
+                            colors={[
+                                { color: "gold", offset: "0", opacity: "1" },
+                                { color: "red", offset: "1", opacity: "1" },
+                            ]}
+                            type='font-awesome-5' name="box-open"
+                        />
+                        <Text style={styles.titleBlockIcon}>14 Day Returns</Text>
+                        <Text style={styles.textBlockIcon}>T&C's Apply</Text>
+                    </View>
+                </View>
+                <View style={styles.containerBlockIcon}>
+                    <View style={styles.blockIconAndText}>
+                        <Icon
+                            raised
+                            size={50}
+                            colors={[
+                                { color: "gold", offset: "0", opacity: "1" },
+                                { color: "red", offset: "1", opacity: "1" },
+                            ]}
+                            type='font-awesome-5' name="hand-holding-heart"
+                        />
+                        <Text style={styles.titleBlockIcon}>Hand Picked</Text>
+                        <Text style={styles.textBlockIcon}>By Our Team</Text>
+                    </View>
+                    <View style={styles.blockIconAndText}>
+                        <Icon
+                            raised
+                            size={50}
+                            colors={[
+                                { color: "gold", offset: "0", opacity: "1" },
+                                { color: "red", offset: "1", opacity: "1" },
+                            ]}
+                            type='font-awesome-5' name="box"
+                        />
+                        <Text style={styles.titleBlockIcon}>Discreet</Text>
+                        <Text style={styles.textBlockIcon} >Non-Identifiable Packaging</Text>
+                    </View>
+                </View>
+
             </View>
         </ScrollView>
     )
@@ -261,6 +321,40 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20,
         flexDirection: 'row'
+    },
+    containerBlockIcon: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10,
+        marginTop: 10
+    },
+    blockIconAndText: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 50,
+        marginRight: 50
+    },
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: 1000,
+    },
+    titleBlockIcon: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontFamily: 'Montserrat_700Bold',
+        color: 'white'
+    },
+    textBlockIcon: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontFamily: 'Montserrat_700Bold',
+        color: 'white',
+        padding: 10
     }
 
 })

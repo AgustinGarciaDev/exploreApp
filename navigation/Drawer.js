@@ -213,7 +213,7 @@ const Drawer = (props) => {
                     title: 'Shop Cart',
                     drawerIcon: () => (
                         <Image
-                            style={{ width: 55, height: 55 }}
+                            style={{ width: 30, height: 30 }}
                             source={{ uri: 'http://tingarciadg.com/wp-content/uploads/2021/06/esposas.png' }}
                         />
 
