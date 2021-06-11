@@ -19,15 +19,21 @@ o elegir opcion: run in browser. (puede que no este 100% optimizada ya que el na
 funciona de la misma manera que un dispositivo móvil)
 ```
 # Construido con 🛠️
-- Node.js - Entorno de ejecución para JavaScript
-- Express - Libreria de Node utilizada en la construccion de la API
-- MongoDB - Base de datos utilizada
-- Mongoose - Modelado de objetos (Object Document Mapper (ODM))
-- Bcrypt - Librería para hashear contraseñas
-- Jsonwebtoken
-- Expo - Framework y plataforma para aplicaciones universales hechas en React.
-- React Native - Framework para construir aplicaciones nativas.
-- Redux - Utilizado para trabajar con un estado global
+* [React](https://reactjs.org/) - Libreria de Frontend
+* [CSS](https://developer.mozilla.org/es/docs/Web/CSS) - Lenguaje de estilos
+* [Redux](https://es.redux.js.org/) - Libreria para manejo del estado
+* [Node](https://nodejs.org/es/) - Entorno de ejecución para JavaScript 
+* [Express](https://expressjs.com/es/) - Framework para Backend
+* [MongoDB](https://www.mongodb.com/) - Base de datos
+* [Mongoose](https://mongoosejs.com/) - Framework para modelado de base de datos
+* [Socket](https://socket.io/) - Framework para controlar datos en tiempo real
+
+# Autores ✒️
+* **Agustín Garcia** - [Agustin](https://github.com/AgustinGarciaDev)
+* **Santiago Sarmiento** - [Santiago](https://github.com/SantiSarmiento)
+* **Pablo Ceresola** - [Pablo](https://github.com/PabloCeresola)
+* **Ivan Dupuy** - [Ivan](https://github.com/dupuyivan)
+* **Kevin muñoz** - [Kevin](https://github.com/KevinAsk47)
 
 # Expresiones de Gratitud 🎁
 Se agradece a Fernando Biaus por la mentoría y la dedicación. <br/>
