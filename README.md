@@ -4,7 +4,7 @@ Aplicación nativa de una e-commerce llamada Explore.
 ![WhatsApp Video 2021-06-10 at 15 54 30 (1)](https://user-images.githubusercontent.com/66225450/121582345-4539df80-ca05-11eb-8ea2-fa6e69c738ab.gif)
 
 # Trabajo realizado
-Una app desarrollada en cinco semanas, realizando dailies diarias para poder resolver los diferentes inconvenientes ya que fue un challenge para el bootcamp cursado en MindHub.
+Aplicacion movil nativa desarrollada de forma grupal en una semana  como parte del programa de programacion web Full Stack MERN realizado en MindHub, siguiendo buenas prácticas y metodologias ágiles para la elaboracion de la misma. Podran ver la aplicacion web en:
 # Comenzando  🚀
 ```
 # Instalar dependencias para el cliente
